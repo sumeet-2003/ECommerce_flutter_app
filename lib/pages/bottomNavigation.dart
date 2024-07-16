@@ -1,8 +1,8 @@
+import 'package:back_up/pages/signup.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:back_up/pages/home.dart';
-import 'package:back_up/pages/order.dart';
-import 'package:back_up/pages/profile.dart';
+import 'package:back_up/pages/shopping.dart';
 
 class BottomNav extends StatefulWidget{
   const BottomNav({super.key});
@@ -12,15 +12,15 @@ class BottomNav extends StatefulWidget{
 class _BottomNavState extends State<BottomNav>{
   late List<Widget> pages;
   late Home HomePage;
-  late Order OrderPage;
-  late Profile ProfilePage;
+  late Shopping ShoppingPage;
+  late SignUp ProfilePage;
   int currentTabIndex=0;
   @override
   void initState(){
     HomePage=const Home();
-    OrderPage=const Order();
-    ProfilePage=const Profile();
-    pages=[HomePage,OrderPage,ProfilePage];
+    ShoppingPage=const Shopping();
+    ProfilePage=const SignUp();
+    pages=[HomePage,ShoppingPage,ProfilePage];
     super.initState();
   }
   @override
@@ -46,11 +46,7 @@ class _BottomNavState extends State<BottomNav>{
             color: Colors.white,
           ),
           Icon(
-            Icons.messenger_outline_rounded,
-            color: Colors.white,
-          ),
-          Icon(
-            Icons.person_outline_rounded,
+            Icons.message,
             color: Colors.white,
           )
         ],

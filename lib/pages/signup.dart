@@ -1,5 +1,6 @@
 import 'package:back_up/pages/login.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SignUp extends StatefulWidget{
   const SignUp({super.key});
@@ -8,12 +9,33 @@ class SignUp extends StatefulWidget{
 }
 class _SignUpState extends State<SignUp>{
 
+  void _launchWhatsApp() async {
+    const phoneNumber = '+919770497756'; // Replace with your desired phone number
+    const message = 'Hello'; // Replace with your desired message
+    final Uri url = Uri.parse('https://wa.me/$phoneNumber?text=${Uri.encodeComponent(message)}');
+
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+  void _openDialPad() async {
+    const phoneNumber = '+919770497756'; // Replace with your desired phone number
+    final Uri url =Uri.parse( 'tel:$phoneNumber');
+
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
   @override
   Widget build(BuildContext context){
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          margin: const EdgeInsets.only(top: 40),
+          margin: const EdgeInsets.only(top: 30),
           child: Form(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,7 +53,7 @@ class _SignUpState extends State<SignUp>{
                       children: [
                         const Center(
                             child: Text(
-                              "User Sign Up",
+                              "Describe Your Problem",
                               style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),)
                         ),
                         const SizedBox(height: 20),
@@ -63,21 +85,38 @@ class _SignUpState extends State<SignUp>{
                           ),
                         ),
                         const SizedBox(height: 20),
-                        const Text("Create Password",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+                        const Text("Address",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
                         const SizedBox(height: 10),
                         TextFormField(
                           validator: (value){
                             if(value!.isEmpty){
-                              return "Please enter your password";
+                              return "Please enter your address";
                             }
                             return null;
                           },
                           decoration: const InputDecoration(
-                            hintText: "Create your Password",
+                            hintText: "Enter your address",
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        const Text("Problem",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+                        const SizedBox(height: 10),
+                        TextFormField(
+                          validator: (value){
+                            if(value!.isEmpty){
+                              return "Please enter your problem";
+                            }
+                            return null;
+                          },
+                          decoration: const InputDecoration(
+                            hintText: "Enter your Problem",
                           ),
                         ),
                         const SizedBox(height: 20),
                         GestureDetector(
+                          onTap: (){
+                            _launchWhatsApp();
+                          },
                           child: Center(
                             child: Container(
                               width: MediaQuery.of(context).size.width/1.5,
@@ -86,7 +125,7 @@ class _SignUpState extends State<SignUp>{
                                 color: const Color(0xffffbc11),
                                 borderRadius: BorderRadius.circular(20),
                               ),
-                              child: const Center(child: Text("Sign Up",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Color(0xffffffff)),)),
+                              child: const Center(child: Text("Book Now",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Color(0xffffffff)),)),
                             ),
                           ),
                         ),
@@ -94,12 +133,12 @@ class _SignUpState extends State<SignUp>{
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Text("Already have an account?",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold),),
+                            const Text("Talk to us? ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold),),
                             GestureDetector(
                               onTap: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context)=>const LogIn()));
+                                _openDialPad();
                               },
-                                child: const Text(" Log In",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Color(0xffffbc11)),)
+                                child: const Text("Contact",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Color(0xffffbc11)),)
                             ),
                           ],
                         ),

@@ -1,6 +1,4 @@
 import 'package:back_up/pages/bottomNavigation.dart';
-import 'package:back_up/pages/home.dart';
-import 'package:back_up/pages/login.dart';
 import 'package:flutter/material.dart';
 
 void main()  {
