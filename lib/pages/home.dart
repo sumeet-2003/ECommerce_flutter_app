@@ -145,128 +145,124 @@ class _HomeState extends State<Home>{
                 ],
               ),
               Container(
-                height: 240,
-                width: 500,
-                padding: const EdgeInsets.only(top: 5),
+                height: 255,
+                width: MediaQuery.of(context).size.width,
                 child: ListView(
                   shrinkWrap: true,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.only(top: 5),
-                          decoration: BoxDecoration(
-                            color: const Color(0xffffffff),
-                            borderRadius: BorderRadius.circular(10)
-                          ),
-                          child: GestureDetector(
-                            onTap: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=>const ProductDetail()));
-                            },
-                            child: Column(
-                              children: [
-                                Image.asset("assets/img/fan-1.jpeg",height: 160,width: 170,),
-                                Text("Fans",style: AppWidget.search(),),
-                                Row(
-                                  children: [
-                                    Text("  Starts from ₹499",style: AppWidget.price()),
-                                  ],
-                                ),
-                                                    ],
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Container(
-                          padding: const EdgeInsets.only(top: 5),
-                          decoration: BoxDecoration(
+                    Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.only(top: 5),
+                            decoration: BoxDecoration(
                               color: const Color(0xffffffff),
                               borderRadius: BorderRadius.circular(10)
-                          ),
-                          child: Column(
-                            children: [
-                              Image.asset("assets/img/fan-1.jpeg",height: 160,width: 170,),
-                              Text("Product 2",style: AppWidget.search(),),
-                              Row(
+                            ),
+                            child: GestureDetector(
+                              onTap: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (context)=>const ProductDetail()));
+                              },
+                              child: Column(
                                 children: [
-                                  Text("  Starts from ₹999",style: AppWidget.price()),
-                                ],
+                                  Image.asset("assets/img/fan-1.jpeg",height: 160,width: 160,),
+                                  Text("Fans",style: AppWidget.search(),),
+                                  Row(
+                                    children: [
+                                      Text("  Starts from ₹499",style: AppWidget.price()),
+                                    ],
+                                  ),
+                                                      ],
                               ),
-                            ],
+                            ),
                           ),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                      ],
+                           SizedBox(
+                            width: MediaQuery.of(context).size.width/20,
+                          ),
+                          Container(
+                            padding: const EdgeInsets.only(top: 5),
+                            decoration: BoxDecoration(
+                                color: const Color(0xffffffff),
+                                borderRadius: BorderRadius.circular(10)
+                            ),
+                            child: Column(
+                              children: [
+                                Image.asset("assets/img/fan-1.jpeg",height: 160,width: 160,),
+                                Text("Product 2",style: AppWidget.search(),),
+                                Row(
+                                  children: [
+                                    Text("  Starts from ₹999",style: AppWidget.price()),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-
                   ],
                 ),
               ),
               Container(
-                height: 230,
-                width: 500,
-                padding: const EdgeInsets.only(top: 5),
+                height: 255,
+                width: MediaQuery.of(context).size.width,
                 child: ListView(
                   shrinkWrap: true,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.only(top: 5),
-                          decoration: BoxDecoration(
-                              color: const Color(0xffffffff),
-                              borderRadius: BorderRadius.circular(10)
-                          ),
-                          child: Column(
-                            children: [
-                              Image.asset("assets/img/fan-1.jpeg",height: 160,width: 170,),
-                              Text("Fans",style: AppWidget.search(),),
-                              Row(
+                    Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.only(top: 5),
+                            decoration: BoxDecoration(
+                                color: const Color(0xffffffff),
+                                borderRadius: BorderRadius.circular(10)
+                            ),
+                            child: GestureDetector(
+                              onTap: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (context)=>const ProductDetail()));
+                              },
+                              child: Column(
                                 children: [
-                                  Text("  Starts from ₹499",style: AppWidget.price()),
+                                  Image.asset("assets/img/fan-1.jpeg",height: 160,width: 160,),
+                                  Text("Fans",style: AppWidget.search(),),
+                                  Row(
+                                    children: [
+                                      Text("  Starts from ₹499",style: AppWidget.price()),
+                                    ],
+                                  ),
                                 ],
                               ),
-                            ],
+                            ),
                           ),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Container(
-                          padding: const EdgeInsets.only(top: 5),
-                          decoration: BoxDecoration(
-                              color: const Color(0xffffffff),
-                              borderRadius: BorderRadius.circular(10)
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width/20,
                           ),
-                          child: Column(
-                            children: [
-                              Image.asset("assets/img/fan-1.jpeg",height: 160,width: 170,),
-                              Text("Product 2",style: AppWidget.search(),),
-                              Row(
-                                children: [
-                                  Text("  Starts from ₹999",style: AppWidget.price()),
-                                ],
-                              ),
-                            ],
+                          Container(
+                            padding: const EdgeInsets.only(top: 5),
+                            decoration: BoxDecoration(
+                                color: const Color(0xffffffff),
+                                borderRadius: BorderRadius.circular(10)
+                            ),
+                            child: Column(
+                              children: [
+                                Image.asset("assets/img/fan-1.jpeg",height: 160,width: 160,),
+                                Text("Product 2",style: AppWidget.search(),),
+                                Row(
+                                  children: [
+                                    Text("  Starts from ₹999",style: AppWidget.price()),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-
                   ],
                 ),
-              ),
-              const SizedBox(
-                height: 30,
               ),
             ],
           ),
