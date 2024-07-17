@@ -1,4 +1,6 @@
 import 'package:back_up/pages/bottomNavigation.dart';
+import 'package:back_up/pages/onBoarding.dart';
+import 'package:back_up/pages/shopping.dart';
 import 'package:flutter/material.dart';
 
 void main()  {
@@ -14,7 +16,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      home: BottomNav(),
+      home: OnBoarding(),
     );
   }
 }

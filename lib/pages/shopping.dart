@@ -3,12 +3,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-const String manLookRightImageUrl =
-    'https://flutter-ui.s3.us-east-2.amazonaws.com/ecommerce/man-look-right.jpg';
-const String dogImageUrl =
-    'https://flutter-ui.s3.us-east-2.amazonaws.com/ecommerce/pet.jpg';
-const String womanLookLeftImageUrl =
-    'https://flutter-ui.s3.us-east-2.amazonaws.com/ecommerce/woman-look-left.jpg';
+const String wireImg='assets/img/wires.jpeg';
+const String fanImg = 'assets/img/fan.jpeg';
+const String lightImg ='assets/img/led-light.jpeg';
+const String btnImg = 'assets/img/btn.jpeg';
+const String mcbImg='assets/img/mcb.jpeg';
+const String sliderImg="assets/img/slider.jpeg";
 
 Cart cart = Cart();
 
@@ -82,32 +82,47 @@ class _ShoppingState extends State<Shopping> {
         children: [
           Row(
             children: [
-              GestureDetector(
-                onTap: () => Navigator.pop(context),
-                  child: Icon(Icons.arrow_back_rounded)),
-              const SizedBox(width: 8),
+
               Text(
                 'Shop by Category',
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
             ],
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 10),
           CategoryTile(
-            imageUrl: manLookRightImageUrl,
+            imageUrl: wireImg,
             category: mensCategory,
             imageAlignment: Alignment.topCenter,
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 10),
           CategoryTile(
-            imageUrl: womanLookLeftImageUrl,
+            imageUrl: fanImg,
             category: womensCategory,
             imageAlignment: Alignment.topCenter,
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 10),
           CategoryTile(
-            imageUrl: dogImageUrl, // TODO: Replace with your own image
+            imageUrl: lightImg, // TODO: Replace with your own image
             category: petsCategory,
+          ),
+          const SizedBox(height: 10),
+          CategoryTile(
+            imageUrl: btnImg,
+            category: girlCategory,
+            imageAlignment: Alignment.topCenter,
+          ),
+          const SizedBox(height: 10),
+          CategoryTile(
+            imageUrl: mcbImg,
+            category: pedoCategory,
+            imageAlignment: Alignment.topCenter,
+          ),
+          const SizedBox(height: 10),
+          CategoryTile(
+            imageUrl: sliderImg,
+            category: sugarCategory,
+            imageAlignment: Alignment.topCenter,
           ),
         ],
       ),
@@ -495,7 +510,7 @@ class ProductRow extends StatelessWidget {
           height: 8,
         ),
         SizedBox(
-          height: 205,
+          height: 210,
           child: ListView.separated(
             padding: const EdgeInsets.symmetric(horizontal: 18),
             itemCount: productTiles.length,
@@ -930,20 +945,31 @@ class OrderItem {
 }
 
 // TODO: Come up with your own categories
-Category mensCategory = Category(title: 'Men', selections: [
+Category mensCategory = Category(title: "", selections: [
   'Shirts',
   'Jeans',
   'Shorts',
 ]);
-Category womensCategory = Category(title: 'Women', selections: [
+Category womensCategory = Category(title: 'Fan', selections: [
   'Shirts',
   'Jeans',
 ]);
-Category petsCategory = Category(title: 'Pets', selections: [
+Category petsCategory = Category(title: 'Lights', selections: [
   'Toys',
   'Treats',
 ]);
-
+Category girlCategory = Category(title: 'Switch', selections: [
+  'Toys',
+  'Treats',
+]);
+Category pedoCategory = Category(title: 'MCB', selections: [
+  'Toys',
+  'Treats',
+]);
+Category sugarCategory = Category(title: 'Slider', selections: [
+  'Toys',
+  'Treats',
+]);
 final kGreyBackground = Colors.grey[200];
 
 // TODO: Fetch products and feed into widgets
@@ -957,6 +983,7 @@ List<Product> products = [
         'https://images-na.ssl-images-amazon.com/images/I/812T%2Bu00R4L._AC_UX466_.jpg'
       ],
       cost: 12.99,
+      description: 'Mens cool t-short',
       category: mensCategory,
       productType: 'shirts',
       sizes: ['S', 'M', 'L', 'XL']),
@@ -1122,6 +1149,16 @@ List<Product> products = [
     ],
     cost: 10.99,
     category: petsCategory,
+    productType: 'treats',
+  ),
+  Product(
+    name: "Zuke's Mini Training Treats",
+    imageUrls: [
+      'https://images-na.ssl-images-amazon.com/images/I/81LV2CHtGKL._AC_SY355_.jpg',
+      'https://images-na.ssl-images-amazon.com/images/I/81K30Bs9C6L._AC_SY355_.jpg',
+    ],
+    cost: 10.99,
+    category: girlCategory,
     productType: 'treats',
   ),
 ];

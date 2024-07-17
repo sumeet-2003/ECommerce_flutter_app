@@ -28,7 +28,7 @@ class _BottomNavState extends State<BottomNav>{
     return Scaffold(
       bottomNavigationBar: CurvedNavigationBar(
         height: 50,
-        backgroundColor: const Color(0xfff1f1f1) ,
+        backgroundColor: Colors.transparent ,
         color: const Color(0xff3e7bfa),
         animationDuration: const Duration(milliseconds: 300),
         onTap: (int index){
