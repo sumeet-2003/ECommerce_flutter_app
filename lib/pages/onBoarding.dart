@@ -1,5 +1,4 @@
 import 'package:back_up/pages/bottomNavigation.dart';
-import 'package:back_up/pages/home.dart';
 import 'package:flutter/material.dart';
 
 class OnBoarding extends StatefulWidget{

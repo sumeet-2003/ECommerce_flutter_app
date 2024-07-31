@@ -1,11 +1,10 @@
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-const String wireImg='assets/img/wires.jpeg';
-const String fanImg = 'assets/img/fan.jpeg';
-const String lightImg ='assets/img/led-light.jpeg';
+// https://drive.google.com/file/d/1H7qkY4MDl97q8u_wuBQXYuNehUEJ8ukl/view?usp=drive_link
+const String lightImg='https://drive.google.com/uc?export=view&id=1uOGooK_9Y4Q-FKO-TSls3Dzr4fIi_cgZ';
+const String fanImg = 'https://drive.google.com/uc?export=view&id=1cDbtBlRV3AKnxMQwcP-5wCjGNLwUQPzD';
+const String wireImg ='assets/img/led-light.jpeg';
 const String btnImg = 'assets/img/btn.jpeg';
 const String mcbImg='assets/img/mcb.jpeg';
 const String sliderImg="assets/img/slider.jpeg";
@@ -13,7 +12,7 @@ const String sliderImg="assets/img/slider.jpeg";
 Cart cart = Cart();
 
 class SimpleEcommerce extends StatelessWidget {
-  const SimpleEcommerce({Key? key}) : super(key: key);
+  const SimpleEcommerce({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +26,7 @@ class SimpleEcommerce extends StatelessWidget {
 }
 
 class Shopping extends StatefulWidget {
-  const Shopping({Key? key}) : super(key: key);
+  const Shopping({super.key});
 
   @override
   State<Shopping> createState() => _ShoppingState();
@@ -91,19 +90,19 @@ class _ShoppingState extends State<Shopping> {
           ),
           const SizedBox(height: 10),
           CategoryTile(
-            imageUrl: wireImg,
-            category: mensCategory,
+            imageUrl: lightImg,
+            category: lights,
             imageAlignment: Alignment.topCenter,
           ),
           const SizedBox(height: 10),
           CategoryTile(
             imageUrl: fanImg,
-            category: womensCategory,
+            category: fan,
             imageAlignment: Alignment.topCenter,
           ),
           const SizedBox(height: 10),
           CategoryTile(
-            imageUrl: lightImg, // TODO: Replace with your own image
+            imageUrl: wireImg, // TODO: Replace with your own image
             category: petsCategory,
           ),
           const SizedBox(height: 10),
@@ -131,7 +130,7 @@ class _ShoppingState extends State<Shopping> {
 }
 
 class CartAppBarAction extends StatefulWidget {
-  const CartAppBarAction({Key? key}) : super(key: key);
+  const CartAppBarAction({super.key});
 
   @override
   State<CartAppBarAction> createState() => _CartAppBarActionState();
@@ -205,7 +204,7 @@ class _CartAppBarActionState extends State<CartAppBarAction> {
 }
 
 class ProductScreen extends StatefulWidget {
-  const ProductScreen({required this.product, Key? key}) : super(key: key);
+  const ProductScreen({required this.product, super.key});
   final Product product;
 
   @override
@@ -401,8 +400,7 @@ class CallToActionButton extends StatelessWidget {
       {required this.onPressed,
         required this.labelText,
         this.minSize = const Size(266, 45),
-        Key? key})
-      : super(key: key);
+        super.key});
   final Function onPressed;
   final String labelText;
   final Size minSize;
@@ -428,7 +426,7 @@ class CallToActionButton extends StatelessWidget {
 }
 
 class CategoryScreen extends StatefulWidget {
-  const CategoryScreen({required this.category, Key? key}) : super(key: key);
+  const CategoryScreen({required this.category, super.key});
   final Category category;
 
   @override
@@ -482,8 +480,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
 
 class ProductRow extends StatelessWidget {
   const ProductRow(
-      {required this.products, required this.productType, Key? key})
-      : super(key: key);
+      {required this.products, required this.productType, super.key});
   final String productType;
   final List<Product> products;
 
@@ -527,7 +524,7 @@ class ProductRow extends StatelessWidget {
 }
 
 class ProductTile extends StatelessWidget {
-  const ProductTile({required this.product, Key? key}) : super(key: key);
+  const ProductTile({required this.product, super.key});
 
   final Product product;
 
@@ -548,7 +545,7 @@ class ProductTile extends StatelessWidget {
           children: [
             ProductImage(product: product),
             const SizedBox(
-              height: 8,
+              height: 0,
             ),
             Text(
               product.name,
@@ -573,9 +570,9 @@ class ProductTile extends StatelessWidget {
 
 class ProductImage extends StatelessWidget {
   const ProductImage({
-    Key? key,
+    super.key,
     required this.product,
-  }) : super(key: key);
+  });
 
   final Product product;
 
@@ -604,7 +601,7 @@ class ProductImage extends StatelessWidget {
 }
 
 class CartScreen extends StatefulWidget {
-  const CartScreen({Key? key}) : super(key: key);
+  const CartScreen({super.key});
 
   @override
   State<CartScreen> createState() => _CartScreenState();
@@ -748,8 +745,7 @@ class CategoryTile extends StatelessWidget {
       {required this.category,
         required this.imageUrl,
         this.imageAlignment = Alignment.center,
-        Key? key})
-      : super(key: key);
+        super.key});
   final String imageUrl;
   final Category category;
 
@@ -798,7 +794,7 @@ class CategoryTile extends StatelessWidget {
 }
 
 class SearchBar extends StatefulWidget {
-  const SearchBar({required this.onChanged, Key? key}) : super(key: key);
+  const SearchBar({required this.onChanged, super.key});
   final Function(String) onChanged;
 
   @override
@@ -820,7 +816,7 @@ class _SearchBarState extends State<SearchBar> {
       children: [
         Container(
           decoration: BoxDecoration(
-            color: Theme.of(context).primaryColorLight,
+            color: Colors.white70,
             borderRadius: BorderRadius.circular(18),
           ),
           child: TextField(
@@ -945,16 +941,25 @@ class OrderItem {
 }
 
 // TODO: Come up with your own categories
-Category mensCategory = Category(title: "", selections: [
-  'Shirts',
-  'Jeans',
-  'Shorts',
+Category lights = Category(title: "Lights", selections: [
+  'Arya-LED-Lamp',
+  'Arya Spot Light',
+  'Arya Street Light',
+  'Arya High Bay',
+  'Arya TubeLight',
+  "Arya Lantern",
 ]);
-Category womensCategory = Category(title: 'Fan', selections: [
-  'Shirts',
-  'Jeans',
+Category fan = Category(title: 'Fan', selections: [
+  'Polar Ceiling Fan',
+  'Polar Table Fan',
+  'Polar Wall Fan',
+  'Polar Exhaust Fan',
+  'Havells Ceiling Fan',
+  'Havells Table Fan',
+  'Havells Wall Fan',
+  'Havells Exhaust Fan',
 ]);
-Category petsCategory = Category(title: 'Lights', selections: [
+Category petsCategory = Category(title: 'Wires', selections: [
   'Toys',
   'Treats',
 ]);
@@ -975,130 +980,471 @@ final kGreyBackground = Colors.grey[200];
 // TODO: Fetch products and feed into widgets
 List<Product> products = [
   Product(
-      name: '2-Pack Crewneck T-Shirts - Black',
+      name: 'Arya Led lights',
       imageUrls: [
-        'https://images-na.ssl-images-amazon.com/images/I/91ieWhKe9AL._AC_UX569_.jpg',
-        'https://images-na.ssl-images-amazon.com/images/I/71UqhKT2MDL._AC_UX466_.jpg',
-        'https://images-na.ssl-images-amazon.com/images/I/81K7OAepB9L._AC_UX466_.jpg',
-        'https://images-na.ssl-images-amazon.com/images/I/812T%2Bu00R4L._AC_UX466_.jpg'
+        'https://drive.google.com/uc?export=view&id=1-Ldu_ciz2PlcLHpUDEphdhlK1SMX6fQJ',
+        'https://drive.google.com/uc?export=view&id=19oT7Iyc217K-cFCGuvs4Bq3smh5SJFhc',
+
       ],
-      cost: 12.99,
-      description: 'Mens cool t-short',
-      category: mensCategory,
-      productType: 'shirts',
-      sizes: ['S', 'M', 'L', 'XL']),
-  Product(
-    name: 'Short Sleeve Henley - Blue',
-    imageUrls: [
-      'https://images-na.ssl-images-amazon.com/images/I/81tpGc13OgL._AC_UX522_.jpg',
-      'https://images-na.ssl-images-amazon.com/images/I/81oNSlos2tL._AC_UY679_.jpg',
-      'https://images-na.ssl-images-amazon.com/images/I/819ea2vQIjL._AC_UY679_.jpg',
-      'https://images-na.ssl-images-amazon.com/images/I/91SH0RB-8dL._AC_UY606_.jpg'
-    ],
-    cost: 17.99,
-    category: mensCategory,
-    productType: 'shirts',
-    sizes: ['XS', 'S', 'M', 'L', 'XL'],
+      cost: 100,
+      description: 'Arya LED Lamp is a smart lamp that can be controlled via an app.',
+      category: lights,
+      productType: 'Arya-LED-Lamp',
   ),
   Product(
-    name: 'Polo RL V-Neck',
+    name: 'Arya LED Lamp',
     imageUrls: [
-      'https://images-na.ssl-images-amazon.com/images/I/61m68nuygSL._AC_UX522_.jpg',
-      'https://images-na.ssl-images-amazon.com/images/I/61URnzIoCPL._AC_UX522_.jpg',
+      'https://drive.google.com/uc?export=view&id=1ld19icEZ9dsqTodgQ1jdZj0DGNLbSYSK',
+      'https://drive.google.com/uc?export=view&id=1qXIqlbQ4z3-n8ZPekgMp7rG_6Jn0mcs5',
     ],
-    cost: 24.99,
-    category: mensCategory,
-    productType: 'shirts',
-    sizes: ['XS', 'S', 'M', 'L', 'XL'],
+    cost: 200,
+    category: lights,
+    productType: 'Arya-LED-Lamp',
   ),
   Product(
-    name: 'Athletic-Fit Stretch Jeans',
+    name: 'Rota-M Spot Light' ,
     imageUrls: [
-      'https://images-na.ssl-images-amazon.com/images/I/91SIuLNN%2BlL._AC_UY679_.jpg',
-      'https://images-na.ssl-images-amazon.com/images/I/91Qpp%2BRPLtL._AC_UX522_.jpg',
+      'https://drive.google.com/uc?export=view&id=1H9I2GKuNjKXWNGlt1CW5c3rthC8cPZCV',
+      'https://drive.google.com/uc?export=view&id=1pxcqHdlXsI2KMwhy9UvHf3XSUDfO15or',
+    ],
+    cost: 200,
+    category: lights,
+    productType: 'Arya Spot Light',
+  ),
+  Product(
+    name: 'Spoton-M Spot Light',
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1ocMFN3chTbiW0GP2Yfu425ehCXkz3ZD9',
+      'https://drive.google.com/uc?export=view&id=1KeaJykoM7kJUF3c3UGtdIxBCzHqziLdo',
     ],
     cost: 29.99,
-    category: mensCategory,
-    productType: 'jeans',
-    sizes: ['XS', 'S', 'M', 'L', 'XL'],
+    category: lights,
+    productType: 'Arya Spot Light',
   ),
   Product(
-    name: "Levi's Original Jeans",
+    name: "Spoton-Gold Spot Light",
     imageUrls: [
-      'https://images-na.ssl-images-amazon.com/images/I/91L4zjZKF-L._AC_UX522_.jpg',
-      'https://images-na.ssl-images-amazon.com/images/I/91Mf37jbSvL._AC_UX522_.jpg',
+      'https://drive.google.com/uc?export=view&id=1eYuuOfYpX9DO62dcvTM2NfV5FPKvgAiR',
+      'https://drive.google.com/uc?export=view&id=1Qggv4SukK9jclnet51G9fp0DR6OnTRtB',
+
     ],
-    cost: 39.99,
-    category: mensCategory,
-    productType: 'jeans',
-    sizes: ['XS', 'S', 'M', 'L', 'XL'],
+    cost: 300,
+    category: lights,
+    productType: 'Arya Spot Light',
   ),
   Product(
-    name: '2-Pack Performance Shorts',
+    name: "Cylinder Spot Light",
     imageUrls: [
-      'https://images-na.ssl-images-amazon.com/images/I/A1lTY32j6gL._AC_UX679_.jpg',
-      'https://images-na.ssl-images-amazon.com/images/I/71JYOHJ%2BS-L._AC_UX522_.jpg',
+      'https://drive.google.com/uc?export=view&id=18Zkt-Vs1nNgWni1emLvPXQc7Hghk9bj5',
+      'https://drive.google.com/uc?export=view&id=1Qvn6cChJot6A6ax3ipBmWNjayQZtPjj7',
+
     ],
-    cost: 19.99,
-    category: mensCategory,
-    productType: 'shorts',
-    sizes: ['XS', 'S', 'M', 'L', 'XL'],
+    cost: 300,
+    category: lights,
+    productType: 'Arya Spot Light',
   ),
   Product(
-    name: "Levi's Cargo Shorts",
+    name: 'Street Light',
     imageUrls: [
-      'https://images-na.ssl-images-amazon.com/images/I/915Io2JEUPL._AC_UX679_.jpg',
-      'https://images-na.ssl-images-amazon.com/images/I/91WJgn0FNkL._AC_UX679_.jpg',
+      'https://drive.google.com/uc?export=view&id=1k92b35aetl6FVcTuy_IDyskKrKgQZBPw',
     ],
-    cost: 29.99,
-    category: mensCategory,
-    productType: 'shorts',
-    sizes: ['XS', 'S', 'M', 'L', 'XL'],
+    cost: 500,
+    category: lights,
+    productType: 'Arya Street Light',
   ),
   Product(
-    name: '2-Pack Short-Sleeve Crewneck',
+    name: "Dolphin Street Light",
     imageUrls: [
-      'https://images-na.ssl-images-amazon.com/images/I/911mb8PkHSL._AC_UX522_.jpg',
-      'https://images-na.ssl-images-amazon.com/images/I/81LDpImWPAL._AC_UX522_.jpg',
+      'https://drive.google.com/uc?export=view&id=1eAixB_LHwxfKBOxuATdaCkbQb8eGR-Cm',
+    ],
+    cost: 200,
+    category: lights,
+    productType: 'Arya Street Light',
+  ),
+  Product(
+    name: "XBeam Street Light",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1LC3rnnkcUgu6tNCFT-Rzkxps2B76t5Oi',
+    ],
+    cost: 200,
+    category: lights,
+    productType: 'Arya Street Light',
+  ),
+  Product(
+    name: "Solar Street Light",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1o1-KzfJK2Uru2juiohCdnBfWs-DvbBCd',
+    ],
+    cost: 200,
+    category: lights,
+    productType: 'Arya Street Light',
+  ),
+  Product(
+    name: "Integrated Solar Street Light",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1kf5Cn5CHAeBLaKJcy0eoxVcjZrFwp3Ji',
+    ],
+    cost: 200,
+    category: lights,
+    productType: 'Arya Street Light',
+  ),
+  Product(
+    name: "Robo-1 High Bay",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=15lvos9fmsrdMuPiSwT5l0lz9gDRAr2D_',
+    ],
+    cost: 200,
+    category: lights,
+    productType: 'Arya High Bay',
+  ),
+  Product(
+    name: "Sudarshan High Bay",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1Vxyp8BmJ-PGJknEzLLL4BEhf3w5tgiTd',
+    ],
+    cost: 200,
+    category: lights,
+    productType: 'Arya High Bay',
+  ),
+  Product(
+    name: "Lentis High Bay",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1sCbZcUQ3k-Gcst6VinMhjluUad8HDwyI',
+    ],
+    cost: 200,
+    category: lights,
+    productType: 'Arya High Bay',
+  ),
+  Product(
+    name: "Tube Light-PC",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1QMx0W_D4Y3x5ak2TQkgurPRz8lZziqou',
+    ],
+    cost: 200,
+    category: lights,
+    productType: 'Arya TubeLight',
+  ),
+  Product(
+    name: "Retro Tube Light(Al)",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1YQx5CYbdaX24eF_SECL2Gk5sJkE_u_sR',
+    ],
+    cost: 200,
+    category: lights,
+    productType: 'Arya TubeLight',
+  ),
+  Product(
+    name: "Linear Tube Light",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1nXeRmDYvIgE48lbxHBBEg2XDHHDVv480',
+    ],
+    cost: 200,
+    category: lights,
+    productType: 'Arya TubeLight',
+  ),
+  Product(
+    name: "Post Top Lantern",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1qGCjkNTOvemRJwpJDloDldfAk6ii1pSP',
+    ],
+    cost: 200,
+    category: lights,
+    productType: 'Arya Lantern',
+  ),
+  Product(
+    name: "Hanging Lantern",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1MoEf2ONvu_E_lrnvAjVcNVJWQjK0G0Rx',
+    ],
+    cost: 200,
+    category: lights,
+    productType: 'Arya Lantern',
+  ),
+  Product(
+    name: "Bollard Lantern",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=13sq51YLVzHk8c3u875r0ZuwD2ITm9wIa',
+    ],
+    cost: 200,
+    category: lights,
+    productType: 'Arya Lantern',
+  ),
+  Product(
+    name: "Decorative Pole Lantern",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1awwgDGqDYyPPtRu2yrVzu1KurBARGA2P',
+    ],
+    cost: 200,
+    category: lights,
+    productType: 'Arya Lantern',
+  ),
+  Product(
+    name: 'EfiSlim Ceiling Fan',
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1KULu3KYplIhlkp2NCEtcnKWPy8xQbL0D',
+      'https://drive.google.com/uc?export=view&id=1PcpuG3pHk2zvt1NBpqTNzPfZjG8EqrUA',
     ],
     cost: 16.99,
-    category: womensCategory,
-    productType: 'shirts',
-    sizes: ['XS', 'S', 'M', 'L', 'XL'],
+    category: fan,
+    productType: 'Polar Ceiling Fan',
   ),
   Product(
-    name: 'Waffle Knit Tunic Blouse',
+    name: 'Prolific Ceiling Fan',
     imageUrls: [
-      'https://images-na.ssl-images-amazon.com/images/I/71lDML8KDQL._AC_UX522_.jpg',
-      'https://images-na.ssl-images-amazon.com/images/I/61Ojm-DnojL._AC_UY679_.jpg',
+      'https://drive.google.com/uc?export=view&id=1Z7ghwfAojEt1hFzxZ8n0ZLfR1DC878Q5',
+      'https://drive.google.com/uc?export=view&id=1KjzT785hRFI719UdY1MfhnVNSEFljYJI',
     ],
     cost: 22.99,
-    category: womensCategory,
-    productType: 'shirts',
-    sizes: ['XS', 'S', 'M', 'L', 'XL'],
+    category: fan,
+    productType: 'Polar Ceiling Fan',
   ),
   Product(
-    name: 'Mid-Rise Skinny Jeans',
+    name: 'PS-31 Ceiling Fan',
     imageUrls: [
       //TODO links not working returning null
-      'https://images-na.ssl-images-amazon.com/images/I/71canaWSlAL._AC_UX522_.jpg',
-      'https://images-na.ssl-images-amazon.com/images/I/71zLzCwbXUL._AC_UX522_.jpg',
+      'https://drive.google.com/uc?export=view&id=1Z9VriKGzA2Ad6a7aq9sSt1mK5tMyCobd',
+      'https://drive.google.com/uc?export=view&id=1QSRqwY4buQOUZ8mPXPli9nrhP2QECwqs',
     ],
     cost: 28.99,
-    category: womensCategory,
-    productType: 'jeans',
-    sizes: ['XS', 'S', 'M', 'L', 'XL'],
+    category: fan,
+    productType: 'Polar Ceiling Fan',
   ),
   Product(
-    name: "Levi's Straight 505 Jeans",
+    name: 'Efysavy Anit-Dust Fan',
     imageUrls: [
-      'https://images-na.ssl-images-amazon.com/images/I/51D4eXuwKaL._AC_UX679_.jpg',
-      'https://images-na.ssl-images-amazon.com/images/I/51sHwN6mDzL._AC_UX679_.jpg',
+      //TODO links not working returning null
+      'https://drive.google.com/uc?export=view&id=1cSf_uWGGkbgwSpa2f-kjIddA_Y65HEv3',
+      'https://drive.google.com/uc?export=view&id=1xJjP7-1DgxyQXQ1OZz-Z93Ed6gDtD7Ca',
+    ],
+    cost: 28.99,
+    category: fan,
+    productType: 'Polar Ceiling Fan',
+  ),
+  Product(
+    name: 'Winaire++ Ceiling Fan',
+    imageUrls: [
+      //TODO links not working returning null
+      'https://drive.google.com/uc?export=view&id=1yAjheYyT--EXyHnCwAPjEr0UScsTlAze',
+      'https://drive.google.com/uc?export=view&id=1ig4FXelLalNFfqOITAEWNY9ZzFDy8ZcA',
+    ],
+    cost: 28.99,
+    category: fan,
+    productType: 'Polar Ceiling Fan',
+  ),
+  Product(
+    name: 'Mini Ceiling Fan',
+    imageUrls: [
+      //TODO links not working returning null
+      'https://drive.google.com/uc?export=view&id=1yyH4k6OO0uefmzKUWjykdbGrcAwJuvaa',
+      'https://drive.google.com/uc?export=view&id=1sxlF8JH3G4Dc8wisW7Kv3XBph7gVrNzV',
+    ],
+    cost: 28.99,
+    category: fan,
+    productType: 'Polar Ceiling Fan',
+  ),
+  Product(
+    name: 'Pinnacle Table Fan',
+    imageUrls: [
+      //TODO links not working returning null
+      'https://drive.google.com/uc?export=view&id=19_LzL89Crnf3JmHmP1KqFdbwsw67lBd5',
+      'https://drive.google.com/uc?export=view&id=1xmfGLjxy_BeQj0K7KNBVHaaVgLSgVbvB',
+    ],
+    cost: 28.99,
+    category: fan,
+    productType: 'Polar Table Fan',
+  ),
+  Product(
+    name: 'Annexer-MB Table Fan',
+    imageUrls: [
+      //TODO links not working returning null
+      'https://drive.google.com/uc?export=view&id=1GRg_ZXZmfh6xTdc7t4R_3PD42y3qNVyu',
+      'https://drive.google.com/uc?export=view&id=1r6H22S2icRfwzGbRLSwV3lVSqD9e_UuC',
+    ],
+    cost: 28.99,
+    category: fan,
+    productType: 'Polar Table Fan',
+  ),
+  Product(
+    name: 'Conquest Table Fan',
+    imageUrls: [
+      //TODO links not working returning null
+      'https://drive.google.com/uc?export=view&id=1QzDlM9GlJu7ZV7ciseHKNufyDRXnsejz',
+      'https://drive.google.com/uc?export=view&id=1_a1tIiAEjPtKT-9DhhPwTV9pzKFdAP_K',
+    ],
+    cost: 28.99,
+    category: fan,
+    productType: 'Polar Table Fan',
+  ),
+  Product(
+    name: 'Stormy-Neo Table Fan',
+    imageUrls: [
+      //TODO links not working returning null
+      'https://drive.google.com/uc?export=view&id=17u3xEBoonuBneCZprEnDhH30Phi4s_85',
+      'https://drive.google.com/uc?export=view&id=1O0hgp8WdHgXadSQIjYc1tazktDdrk3Ts',
+    ],
+    cost: 28.99,
+    category: fan,
+    productType: 'Polar Table Fan',
+  ),
+  Product(
+    name: 'Fanny Wall Fan',
+    imageUrls: [
+      //TODO links not working returning null
+      'https://drive.google.com/uc?export=view&id=1RxS40DgKZeaM3ZMr7yhFCEE_R2-xKmHq',
+      'https://drive.google.com/uc?export=view&id=1wuEa9sK3inYFzB7T98XQ3KbZrKG8clM6',
+    ],
+    cost: 28.99,
+    category: fan,
+    productType: 'Polar Wall Fan',
+  ),
+  Product(
+    name: 'Conquest-Pro Wall Fan',
+    imageUrls: [
+      //TODO links not working returning null
+      'https://drive.google.com/uc?export=view&id=1qh8CluJB0z9RYG_XvRztyYjN-lXWbvBq',
+      'https://drive.google.com/uc?export=view&id=1ap_kRBTnSrMLbkStqZTFyVsRkrCgi0kw',
+    ],
+    cost: 28.99,
+    category: fan,
+    productType: 'Polar Wall Fan',
+  ),
+  Product(
+    name: 'Exhaust Fan',
+    imageUrls: [
+      //TODO links not working returning null
+      'https://drive.google.com/uc?export=view&id=1tpYJSpCiwX5Jis0klT_kn8ukqKqTFyPu',
+      'https://drive.google.com/uc?export=view&id=1kk2iJpZbtFr88yL5kV0xIhpEd1rZklmi',
+    ],
+    cost: 28.99,
+    category: fan,
+    productType: 'Polar Exhaust Fan',
+  ),
+  Product(
+    name: "Stealth Puro Ceiling Fan",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1Mqx1unniCTEsOXfEDG0YAEtOniv0uUal',
+      'https://drive.google.com/uc?export=view&id=1zCJzJ6S4kvYIaRoH039aJjO2Qw33EHS1',
     ],
     cost: 34.99,
-    category: womensCategory,
-    productType: 'jeans',
-    sizes: ['XS', 'S', 'M', 'L', 'XL'],
+    category: fan,
+    productType: 'Havells Ceiling Fan',
+  ),
+  Product(
+    name: "ALbus BLDC Ceiling Fan",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1yMuWPS7VMzVZwh5k-e4UBeAZ-E1kkVZ7',
+      'https://drive.google.com/uc?export=view&id=1dP62jbdZGC_Vom0wWup1mpV1rl9eHwhL',
+    ],
+    cost: 34.99,
+    category: fan,
+    productType: 'Havells Ceiling Fan',
+  ),
+  Product(
+    name: "Lumeno Ceiling Fan",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1OkROYF3R-1GjiLcus4cDcvvWuaJddo1W',
+      'https://drive.google.com/uc?export=view&id=1HSGaHVOyCzkkPanULgMuqLCAcnBLGbDh',
+    ],
+    cost: 34.99,
+    category: fan,
+    productType: 'Havells Ceiling Fan',
+  ),
+  Product(
+    name: "Kids Room Ceiling Fan",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1y2CtsJAIWoi2eaPgy7S7xvDWPeaGJ4VU',
+      'https://drive.google.com/uc?export=view&id=1_54Pk6jMbkv0T2maF1fvcWcKBmF_RRjU',
+      'https://drive.google.com/uc?export=view&id=1Z1gw_OyBdYzEJw1P6Bcjh2bJrP4QmOtV',
+    ],
+    cost: 34.99,
+    category: fan,
+    productType: 'Havells Ceiling Fan',
+  ),
+  Product(
+    name: "Festiva-ES Ceiling Fan",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1NhEIq4Btj3lpori371nLe1DutPSY9XMv',
+      'https://drive.google.com/uc?export=view&id=1Dj7voMuEwCT6grdILOIo1SnmiwSAiFg0',
+      'https://drive.google.com/uc?export=view&id=1wSpTLvQtmsllQRyzxFQm5Wgotk-6tD3t',
+    ],
+    cost: 34.99,
+    category: fan,
+    productType: 'Havells Ceiling Fan',
+  ),
+  Product(
+    name: "ES-40-50 Ceiling Fan",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1LZyJIxBuQ-C6rXOxZpgbNtnB8WEaks9S',
+      'https://drive.google.com/uc?export=view&id=1twXOiQmzK98TNHA9dKHwAAUawMNO8l6R',
+      'https://drive.google.com/uc?export=view&id=1CvBhhtP8SUg_X89Mv_C180qSDel7lbLq',
+    ],
+    cost: 34.99,
+    category: fan,
+    productType: 'Havells Ceiling Fan',
+  ),
+  Product(
+    name: "Girik-Gold Wall Fan",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1HzM9FrHWY7qmtgeZMaeaZ28MivRUnRhu',
+    ],
+    cost: 34.99,
+    category: fan,
+    productType: 'Havells Wall Fan',
+  ),
+  Product(
+    name: "AinDrila Wall Fan",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1aGbO1y9k8hOWhh_hNvFROKB60rLQUHOD',
+    ],
+    cost: 34.99,
+    category: fan,
+    productType: 'Havells Wall Fan',
+  ),
+  Product(
+    name: "Ciera-HS Wall Fan",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1iC-dJs7KC5voNV6lwmKFbVzKT-kan-5Y',
+    ],
+    cost: 34.99,
+    category: fan,
+    productType: 'Havells Wall Fan',
+  ),
+  Product(
+    name: "Ventiliar Exhaust Fan",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1KHw31SIG6kKL6eXWkUAabQF9E73aTEfs',
+    ],
+    cost: 34.99,
+    category: fan,
+    productType: 'Havells Exhaust Fan',
+  ),
+  Product(
+    name: "Ventiliar-DX Exhaust Fan",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1Ip9G2vyzUhuz7WwvBa5JIIS9unC6os_U',
+    ],
+    cost: 34.99,
+    category: fan,
+    productType: 'Havells Exhaust Fan',
+  ),
+  Product(
+    name: "Ventiliar-DB Exhaust Fan",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=12Aaa4-n2SzyOj6Ehaz24XMmh4OdmlC9E',
+    ],
+    cost: 34.99,
+    category: fan,
+    productType: 'Havells Exhaust Fan',
+  ),
+  Product(
+    name: "Ventiliar-DX-C Exhaust Fan",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1HX5Mhh0a_7vo8-MTJzisop_lnjcwPZ8i',
+      'https://drive.google.com/uc?export=view&id=1ToMGvUVdUHHn_0cTcW2HtLzaluCS5sMm',
+    ],
+    cost: 34.99,
+    category: fan,
+    productType: 'Havells Exhaust Fan',
   ),
   Product(
     name: "Levi's 715 Bootcut Jeans",
@@ -1107,8 +1453,8 @@ List<Product> products = [
       'https://images-na.ssl-images-amazon.com/images/I/81qmkt1Be0L._AC_UY679_.jpg',
     ],
     cost: 34.99,
-    category: womensCategory,
-    productType: 'jeans',
+    category: fan,
+    productType: 'Havells',
     sizes: ['XS', 'S', 'M', 'L', 'XL'],
   ),
   Product(

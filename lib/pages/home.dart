@@ -140,11 +140,11 @@ class _HomeState extends State<Home>{
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("All Products",style: AppWidget.search(),),
+                  Text("Popular Products Brands",style: AppWidget.search(),),
                   const Text("See all",style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold),),
                 ],
               ),
-              Container(
+              SizedBox(
                 height: 255,
                 width: MediaQuery.of(context).size.width,
                 child: ListView(
@@ -166,13 +166,9 @@ class _HomeState extends State<Home>{
                               },
                               child: Column(
                                 children: [
-                                  Image.asset("assets/img/fan-1.jpeg",height: 160,width: 160,),
-                                  Text("Fans",style: AppWidget.search(),),
-                                  Row(
-                                    children: [
-                                      Text("  Starts from ₹499",style: AppWidget.price()),
-                                    ],
-                                  ),
+                                  Image.asset("assets/img/arya-logo.jpg",height: 160,width: 160,),
+                                  Text("Arya",style: AppWidget.search(),),
+
                                                       ],
                               ),
                             ),
@@ -188,13 +184,9 @@ class _HomeState extends State<Home>{
                             ),
                             child: Column(
                               children: [
-                                Image.asset("assets/img/fan-1.jpeg",height: 160,width: 160,),
-                                Text("Product 2",style: AppWidget.search(),),
-                                Row(
-                                  children: [
-                                    Text("  Starts from ₹999",style: AppWidget.price()),
-                                  ],
-                                ),
+                                Image.asset("assets/img/Bajaj-Electricals-Logo.jpg",height: 160,width: 160,),
+                                Text("Bajaj",style: AppWidget.search(),),
+
                               ],
                             ),
                           ),
@@ -204,7 +196,7 @@ class _HomeState extends State<Home>{
                   ],
                 ),
               ),
-              Container(
+              SizedBox(
                 height: 255,
                 width: MediaQuery.of(context).size.width,
                 child: ListView(
@@ -226,13 +218,8 @@ class _HomeState extends State<Home>{
                               },
                               child: Column(
                                 children: [
-                                  Image.asset("assets/img/fan-1.jpeg",height: 160,width: 160,),
-                                  Text("Fans",style: AppWidget.search(),),
-                                  Row(
-                                    children: [
-                                      Text("  Starts from ₹499",style: AppWidget.price()),
-                                    ],
-                                  ),
+                                  Image.asset("assets/img/havells-logo.jpg",height: 160,width: 160,),
+                                  Text("Havells",style: AppWidget.search(),),
                                 ],
                               ),
                             ),
@@ -248,13 +235,9 @@ class _HomeState extends State<Home>{
                             ),
                             child: Column(
                               children: [
-                                Image.asset("assets/img/fan-1.jpeg",height: 160,width: 160,),
-                                Text("Product 2",style: AppWidget.search(),),
-                                Row(
-                                  children: [
-                                    Text("  Starts from ₹999",style: AppWidget.price()),
-                                  ],
-                                ),
+                                Image.asset("assets/img/polar-logo.jpeg",height: 160,width: 160,),
+                                Text("Polar",style: AppWidget.search(),),
+
                               ],
                             ),
                           ),
@@ -264,6 +247,58 @@ class _HomeState extends State<Home>{
                   ],
                 ),
               ),
+              SizedBox(
+                height: 255,
+                width: MediaQuery.of(context).size.width,
+                child: ListView(
+                  shrinkWrap: true,
+                  children: [
+                    Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.only(top: 5),
+                            decoration: BoxDecoration(
+                                color: const Color(0xffffffff),
+                                borderRadius: BorderRadius.circular(10)
+                            ),
+                            child: GestureDetector(
+                              onTap: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (context)=>const ProductDetail()));
+                              },
+                              child: Column(
+                                children: [
+                                  Image.asset("assets/img/pressfit-logo.png",height: 160,width: 160,),
+                                  Text("PressFit",style: AppWidget.search(),),
+                                ],
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width/20,
+                          ),
+                          Container(
+                            padding: const EdgeInsets.only(top: 5),
+                            decoration: BoxDecoration(
+                                color: const Color(0xffffffff),
+                                borderRadius: BorderRadius.circular(10)
+                            ),
+                            child: Column(
+                              children: [
+                                Image.asset("assets/img/polycab-logo.jpeg",height: 160,width: 160,),
+                                Text("Polycab",style: AppWidget.search(),),
+
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
             ],
           ),
         ),

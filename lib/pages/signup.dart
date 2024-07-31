@@ -76,22 +76,24 @@ class _SignUpState extends State<SignUp> {
       final phone = _phoneController.text;
       final address = _addressController.text;
       final problem = _selectedProblem == 'Other' ? _customProblem : _selectedProblem;
-      final msg = "*Repair Request*";
-      final message = '$msg\n Name: $name\nPhone: $phone\nAddress: $address\nProblem: $problem\nEstimated Cost: $_estimatedCost';
+      const msg = "*Repair Request*";
+      final message = '$msg\nName: $name\nPhone: $phone\nAddress: $address\nProblem: $problem\nEstimated Cost: $_estimatedCost';
 
       final Uri url = Uri.parse('https://wa.me/919770497756?text=${Uri.encodeComponent(message)}');
 
       if (await canLaunchUrl(url)) {
         await launchUrl(url);
       } else {
-        throw 'Could not launch $url';
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Could not launch $url')),
+        );
       }
     }
   }
 
   void _openDialPad() async {
     const phoneNumber = '+919770497756';
-    final Uri url = Uri.parse('tel:$phoneNumber');
+    final Uri url = Uri(scheme:'tel',path:phoneNumber);
 
     if (await canLaunchUrl(url)) {
       await launchUrl(url);
@@ -239,7 +241,7 @@ class _SignUpState extends State<SignUp> {
                       if (_selectedProblem != null && _selectedProblem != 'Other')
                         Text(
                           'Estimated Cost: $_estimatedCost',
-                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                         ),
                       const SizedBox(height: 20),
                       GestureDetector(
