@@ -2,12 +2,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 // https://drive.google.com/file/d/1H7qkY4MDl97q8u_wuBQXYuNehUEJ8ukl/view?usp=drive_link
-const String lightImg='https://drive.google.com/uc?export=view&id=1uOGooK_9Y4Q-FKO-TSls3Dzr4fIi_cgZ';
-const String fanImg = 'https://drive.google.com/uc?export=view&id=1cDbtBlRV3AKnxMQwcP-5wCjGNLwUQPzD';
-const String wireImg ='assets/img/led-light.jpeg';
-const String btnImg = 'assets/img/btn.jpeg';
-const String mcbImg='assets/img/mcb.jpeg';
-const String sliderImg="assets/img/slider.jpeg";
+const String lightImg='https://drive.google.com/uc?export=view&id=10sivGGiQr-BAgx4ISxCx5vUQcF7if48C';
+const String fanImg = 'https://drive.google.com/uc?export=view&id=136ST3URsYINM83hLx4xq4BViEfJsq-jU';
+const String wireImg ='https://drive.google.com/uc?export=view&id=1dqoOVQVhzDKXkPQfjWuGs4WVMx68Q-To';
+const String btnImg = 'https://drive.google.com/uc?export=view&id=1LgSVB6I0ds6swR-G1yOBWv04hM-Azf3B';
+const String mcbImg='https://drive.google.com/uc?export=view&id=1q5xJNBgob3eWTt6weo1h8qip1RCRTn2l';
+const String applinceImg = 'https://drive.google.com/uc?export=view&id=1Q2FxQAq-Mbrc77aBjK4levV91pHLaKt7';
 
 Cart cart = Cart();
 
@@ -102,25 +102,26 @@ class _ShoppingState extends State<Shopping> {
           ),
           const SizedBox(height: 10),
           CategoryTile(
-            imageUrl: wireImg, // TODO: Replace with your own image
-            category: petsCategory,
+            imageUrl: wireImg,
+            category: wires,
+            imageAlignment: Alignment.topCenter,
           ),
           const SizedBox(height: 10),
           CategoryTile(
             imageUrl: btnImg,
-            category: girlCategory,
+            category: switchh,
             imageAlignment: Alignment.topCenter,
           ),
           const SizedBox(height: 10),
           CategoryTile(
             imageUrl: mcbImg,
-            category: pedoCategory,
+            category: mcb,
             imageAlignment: Alignment.topCenter,
           ),
           const SizedBox(height: 10),
           CategoryTile(
-            imageUrl: sliderImg,
-            category: sugarCategory,
+            imageUrl: applinceImg,
+            category: applince,
             imageAlignment: Alignment.topCenter,
           ),
         ],
@@ -346,7 +347,7 @@ class _ProductScreenState extends State<ProductScreen> {
                     height: 4,
                   ),
                   Text(
-                    '\$${product.cost}',
+                    '\₹${product.cost}',
                     style: Theme.of(context).textTheme.titleSmall!.copyWith(
                       color: Theme.of(context).colorScheme.secondary,
                     ),
@@ -354,7 +355,7 @@ class _ProductScreenState extends State<ProductScreen> {
                   const SizedBox(height: 12),
                   Text(
                     product.description ??
-                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis purus laoreet, efficitur libero vel, feugiat ante. Vestibulum tempor, ligula.',
+                        'Contact the Dealer for more details about this product',
                     style: Theme.of(context)
                         .textTheme
                         .bodyMedium!
@@ -555,7 +556,7 @@ class ProductTile extends StatelessWidget {
             ),
             const Spacer(),
             Text(
-              '\$${product.cost.toString()}',
+              '\₹${product.cost.toString()}',
               style: Theme.of(context)
                   .textTheme
                   .titleSmall!
@@ -649,7 +650,7 @@ class _CartScreenState extends State<CartScreen> {
                   height: 8,
                 ),
                 Text(
-                  '\$${item.product.cost}',
+                  '\₹${item.product.cost}',
                   style: Theme.of(context).textTheme.titleSmall!.copyWith(
                     color: Theme.of(context).colorScheme.secondary,
                   ),
@@ -720,7 +721,7 @@ class _CartScreenState extends State<CartScreen> {
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                     Text(
-                      '\$${cart.totalCost.toStringAsFixed(2)}',
+                      '\₹${cart.totalCost.toStringAsFixed(2)}',
                       style: Theme.of(context).textTheme.titleSmall,
                     ),
                   ],
@@ -959,21 +960,28 @@ Category fan = Category(title: 'Fan', selections: [
   'Havells Wall Fan',
   'Havells Exhaust Fan',
 ]);
-Category petsCategory = Category(title: 'Wires', selections: [
+Category wires = Category(title: 'Wires', selections: [
+  'Polycab Wires',
+  'Pressfit Wires',
+  'Lan Cable',
+  'Coaxial Cable',
+]);
+Category switchh = Category(title: 'Switch', selections: [
   'Toys',
   'Treats',
 ]);
-Category girlCategory = Category(title: 'Switch', selections: [
+Category mcb = Category(title: 'MCB', selections: [
   'Toys',
   'Treats',
 ]);
-Category pedoCategory = Category(title: 'MCB', selections: [
-  'Toys',
-  'Treats',
-]);
-Category sugarCategory = Category(title: 'Slider', selections: [
-  'Toys',
-  'Treats',
+Category applince = Category(title: 'Other Applinces', selections:[
+  'Oven',
+  'Mixer Grinder',
+  'Induction'
+  'Iron',
+  'Airfryer',
+  'Juicer',
+  'Miscellenious'
 ]);
 final kGreyBackground = Colors.grey[200];
 
@@ -1447,64 +1455,91 @@ List<Product> products = [
     productType: 'Havells Exhaust Fan',
   ),
   Product(
-    name: "Levi's 715 Bootcut Jeans",
+    name: 'HR-FR-LSH green wires',
     imageUrls: [
-      'https://images-na.ssl-images-amazon.com/images/I/81QwSgeXHTL._AC_UX522_.jpg',
-      'https://images-na.ssl-images-amazon.com/images/I/81qmkt1Be0L._AC_UY679_.jpg',
-    ],
-    cost: 34.99,
-    category: fan,
-    productType: 'Havells',
-    sizes: ['XS', 'S', 'M', 'L', 'XL'],
-  ),
-  Product(
-    name: '3-Pack - Squeaky Plush Dog Toy',
-    imageUrls: [
-      'https://images-na.ssl-images-amazon.com/images/I/712YaF31-3L._AC_SL1000_.jpg',
-      'https://images-na.ssl-images-amazon.com/images/I/71K1NzmHCfL._AC_SL1000_.jpg',
+      'https://drive.google.com/uc?export=view&id=1cQsiU3UvLRN17psWC2kjffQN7i_0KdQD',
     ],
     cost: 9.99,
-    category: petsCategory,
-    productType: 'toys',
+    category: wires,
+    productType: 'Polycab Wires',
   ),
   Product(
-    name: 'Wobble Wag Giggle Ball',
+    name: 'FR-LSH High_Performence Wires',
     imageUrls: [
-      'https://images-na.ssl-images-amazon.com/images/I/81XyqDXVwCL._AC_SX355_.jpg',
-      'https://images-na.ssl-images-amazon.com/images/I/81Ye9KrP3pL._AC_SY355_.jpg',
+      'https://drive.google.com/uc?export=view&id=195P0cdg7cXw7pu_RZ09MFXMuOVSSvwB_',
     ],
     cost: 11.99,
-    category: petsCategory,
-    productType: 'toys',
+    category: wires,
+    productType: 'Polycab Wires',
   ),
   Product(
-    name: 'Duck Hide Twists',
+    name: 'FR-LF single-core Wires',
     imageUrls: [
-      'https://images-na.ssl-images-amazon.com/images/I/51dS9c0xIdL._SX342_.jpg',
-      'https://images-na.ssl-images-amazon.com/images/I/81z4lvRtc5L._SL1500_.jpg',
+      'https://drive.google.com/uc?export=view&id=1tIDqdmMDKauYSvFI5GrkK7rh5Za92X_I',
     ],
     cost: 8.99,
-    category: petsCategory,
-    productType: 'treats',
+    category: wires,
+    productType: 'Polycab Wires',
   ),
   Product(
-    name: "Zuke's Mini Training Treats",
+    name: "Building Wires",
     imageUrls: [
-      'https://images-na.ssl-images-amazon.com/images/I/81LV2CHtGKL._AC_SY355_.jpg',
-      'https://images-na.ssl-images-amazon.com/images/I/81K30Bs9C6L._AC_SY355_.jpg',
+      'https://drive.google.com/uc?export=view&id=1xabiJ1UK_Hu_i1Y8bPCtDRkQF92bd6Zi',
+      'https://drive.google.com/uc?export=view&id=1ourCqx445ftiswGGs0hNZE1HfoXzjTZt',
     ],
     cost: 10.99,
-    category: petsCategory,
-    productType: 'treats',
+    category: wires,
+    productType: 'Pressfit Wires',
   ),
   Product(
-    name: "Zuke's Mini Training Treats",
+    name: "Industrial Cable Wires",
     imageUrls: [
-      'https://images-na.ssl-images-amazon.com/images/I/81LV2CHtGKL._AC_SY355_.jpg',
-      'https://images-na.ssl-images-amazon.com/images/I/81K30Bs9C6L._AC_SY355_.jpg',
+      'https://drive.google.com/uc?export=view&id=1tX0j9-fitAtu_cZ_OPMyKcZQkmsGfwEZ',
+      'https://drive.google.com/uc?export=view&id=1nwXDOdaFmHrquMw5abYa5Yz7jA50Ov3R',
+      'https://drive.google.com/uc?export=view&id=1zQ42jMQBAhmtvUQpYs7UT4SAnnzjb1vn',
     ],
     cost: 10.99,
-    category: girlCategory,
-    productType: 'treats',
+    category: wires,
+    productType: 'Pressfit Wires',
+  ),
+  Product(
+    name: "Aluminium Cables",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1V7yc6A6xFORNiP_xmkGbt1NXcSKEOh_D',
+      'https://drive.google.com/uc?export=view&id=18ZL-WZZdAlcDXC5HYjU-8XJNT4BAz9wd',
+    ],
+    cost: 10.99,
+    category: wires,
+    productType: 'Pressfit Wires',
+  ),
+  Product(
+    name: "Twisted-Pair Cables",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1gTAT6wb4v0lEGNa5BwQJWxHOc8Lr16gn',
+      'https://drive.google.com/uc?export=view&id=18ZL-WZZdAlcDXC5HYjU-8XJNT4BAz9wd',
+    ],
+    cost: 10.99,
+    category: wires,
+    productType: 'Pressfit Wires',
+  ),
+  Product(
+    name: "Lan Cables",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=12MgEc0Enn4WAt4XCezANWyf9MLedOfmN',
+      'https://drive.google.com/uc?export=view&id=1-AgWzU5Yw4o9MV43GLX8GtHl2Ug2lU9a',
+    ],
+    cost: 10.99,
+    category: wires,
+    productType: 'Lan Cable',
+  ),
+  Product(
+    name: "RG6 Coaxial Cable",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1qN7fgjBEh0X4QtbBQEYH9Q_1ngYkKXAv',
+      'https://drive.google.com/uc?export=view&id=1-AgWzU5Yw4o9MV43GLX8GtHl2Ug2lU9a',
+    ],
+    cost: 10.99,
+    category: wires,
+    productType: 'Coaxial Cable',
   ),
 ];

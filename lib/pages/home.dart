@@ -14,7 +14,6 @@ class _HomeState extends State<Home>{
     "assets/img/btn.jpeg",
     "assets/img/led-light.jpeg",
     "assets/img/mcb.jpeg",
-    "assets/img/slider.jpeg",
     "assets/img/wires.jpeg",
   ];
 
@@ -160,17 +159,11 @@ class _HomeState extends State<Home>{
                               color: const Color(0xffffffff),
                               borderRadius: BorderRadius.circular(10)
                             ),
-                            child: GestureDetector(
-                              onTap: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context)=>const ProductDetail()));
-                              },
-                              child: Column(
-                                children: [
-                                  Image.asset("assets/img/arya-logo.jpg",height: 160,width: 160,),
-                                  Text("Arya",style: AppWidget.search(),),
-
-                                                      ],
-                              ),
+                            child: Column(
+                              children: [
+                                Image.asset("assets/img/arya-logo.jpg",height: 160,width: 160,),
+                                Text("Arya",style: AppWidget.search(),),
+                              ],
                             ),
                           ),
                            SizedBox(

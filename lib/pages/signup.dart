@@ -26,7 +26,7 @@ class _SignUpState extends State<SignUp> {
     'Switch Board': '100 Rs/board',
     'Open Fitting': '13 Rs/sq ft',
     'Gidger Fitting': '700 Rs',
-    'Wall Fan Fitting': '',
+    'Wall Fan Fitting': '500 RS',
     'Meter Board Fitting': '500 Rs',
     'Service Cable': '14 Rs/sq ft',
     'House Wirring': '16 Rs/sq ft',
@@ -82,7 +82,7 @@ class _SignUpState extends State<SignUp> {
       final Uri url = Uri.parse('https://wa.me/919770497756?text=${Uri.encodeComponent(message)}');
 
       if (await canLaunchUrl(url)) {
-        await launchUrl(url);
+        await launchUrl(url,mode: LaunchMode.externalApplication);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Could not launch $url')),
@@ -92,16 +92,20 @@ class _SignUpState extends State<SignUp> {
   }
 
   void _openDialPad() async {
-    const phoneNumber = '+919770497756';
-    final Uri url = Uri(scheme:'tel',path:phoneNumber);
+    const phoneNumber = 'tel:+919770497756';
+    final Uri url = Uri.parse(phoneNumber);
+
+    print('Attempting to launch $url'); // Debugging output
 
     if (await canLaunchUrl(url)) {
-      await launchUrl(url);
+      await launchUrl(url, mode: LaunchMode.externalApplication);
     } else {
-      throw 'Could not launch $url';
+      print('Could not launch $url'); // Debugging output
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Could not launch $url')),
+      );
     }
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
