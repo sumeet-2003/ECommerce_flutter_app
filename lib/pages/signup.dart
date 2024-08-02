@@ -95,12 +95,9 @@ class _SignUpState extends State<SignUp> {
     const phoneNumber = 'tel:+919770497756';
     final Uri url = Uri.parse(phoneNumber);
 
-    print('Attempting to launch $url'); // Debugging output
-
     if (await canLaunchUrl(url)) {
       await launchUrl(url, mode: LaunchMode.externalApplication);
-    } else {
-      print('Could not launch $url'); // Debugging output
+    } else {// Debugging output
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Could not launch $url')),
       );

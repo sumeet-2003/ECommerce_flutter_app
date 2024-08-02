@@ -347,7 +347,7 @@ class _ProductScreenState extends State<ProductScreen> {
                     height: 4,
                   ),
                   Text(
-                    '\₹${product.cost}',
+                    '₹${product.cost}',
                     style: Theme.of(context).textTheme.titleSmall!.copyWith(
                       color: Theme.of(context).colorScheme.secondary,
                     ),
@@ -556,7 +556,7 @@ class ProductTile extends StatelessWidget {
             ),
             const Spacer(),
             Text(
-              '\₹${product.cost.toString()}',
+              '₹${product.cost.toString()}',
               style: Theme.of(context)
                   .textTheme
                   .titleSmall!
@@ -650,7 +650,7 @@ class _CartScreenState extends State<CartScreen> {
                   height: 8,
                 ),
                 Text(
-                  '\₹${item.product.cost}',
+                  '₹${item.product.cost}',
                   style: Theme.of(context).textTheme.titleSmall!.copyWith(
                     color: Theme.of(context).colorScheme.secondary,
                   ),
@@ -721,7 +721,7 @@ class _CartScreenState extends State<CartScreen> {
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                     Text(
-                      '\₹${cart.totalCost.toStringAsFixed(2)}',
+                      '₹${cart.totalCost.toStringAsFixed(2)}',
                       style: Theme.of(context).textTheme.titleSmall,
                     ),
                   ],
@@ -967,12 +967,17 @@ Category wires = Category(title: 'Wires', selections: [
   'Coaxial Cable',
 ]);
 Category switchh = Category(title: 'Switch', selections: [
-  'Toys',
-  'Treats',
+  'Pressfit Switch',
+  'Pressfit Switch Plate',
+  'Pressfit Modular Switch',
 ]);
 Category mcb = Category(title: 'MCB', selections: [
-  'Toys',
-  'Treats',
+  'MCB',
+  'RCCB',
+  'Isolator',
+  'Changeover',
+  'Fuse',
+  'Armor',
 ]);
 Category applince = Category(title: 'Other Applinces', selections:[
   'Oven',
@@ -1541,5 +1546,175 @@ List<Product> products = [
     cost: 10.99,
     category: wires,
     productType: 'Coaxial Cable',
+  ),
+  Product(
+    name: "Switch Button",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1danXpOnTdfW_vMiCHwb36O38NaXUxSNu',
+      'https://drive.google.com/uc?export=view&id=1jC-SiaTxFwKlRHCTlTUOZbuNddworQaP',
+    ],
+    cost: 10.99,
+    category: switchh,
+    productType: 'Pressfit Switch',
+  ),
+  Product(
+    name: "Doorbell Button",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=18V9K6ujTjcuSrlx8ppIPONbnblWlqIgg',
+      'https://drive.google.com/uc?export=view&id=1bUdgZh_UEroLrV7H_SceJcy-fusjwm_6',
+    ],
+    cost: 10.99,
+    category: switchh,
+    productType: 'Pressfit Switch',
+  ),
+  Product(
+    name: "Socket",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1Nad5GHnZm0MXccw7KJAk65If-BmV0VVK',
+    ],
+    cost: 10.99,
+    category: switchh,
+    productType: 'Pressfit Switch',
+  ),
+  Product(
+    name: "Fan Regulator",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=11lClPfBYg08wGrEf--zk-kGz_h4Xeshr',
+    ],
+    cost: 10.99,
+    category: switchh,
+    productType: 'Pressfit Switch',
+  ),
+  Product(
+    name: "Lamp & Indicator",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1EgRQ-qA7kQMBi0dBU4vgbSeT1lBc0gW3',
+    ],
+    cost: 10.99,
+    category: switchh,
+    productType: 'Pressfit Switch',
+  ),
+  Product(
+    name: "Solid Color Switch",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1WO6CcKa3Ot9ql2YgN3AMY90ek1fWsY1L',
+      'https://drive.google.com/uc?export=view&id=10Vr7LyvTzP1TAv_RxuV9pxevsNxgJoi3',
+      'https://drive.google.com/uc?export=view&id=1pT5B_lVupBHaHBfVcXR9NoVKa_yMBbFk',
+    ],
+    cost: 10.99,
+    category: switchh,
+    productType: 'Pressfit Switch Plate',
+  ),
+  Product(
+    name: "Pattern Switch",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1AeUVLcitdGRC2fASU5h5FCwr8SFybSXH',
+      'https://drive.google.com/uc?export=view&id=1giBza6hxuwljQtX11iwsBqIO6brVxffy',
+      'https://drive.google.com/uc?export=view&id=1_msPkQbpjh4lCVb0n8RhH1e4WaU3NYqT',
+    ],
+    cost: 10.99,
+    category: switchh,
+    productType: 'Pressfit Switch Plate',
+  ),
+  Product(
+    name: "Elegant Design Switch",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1ppwEA8WU3Nr4NVHzt-j8FLRLEYlbSgGT',
+      'https://drive.google.com/uc?export=view&id=1BevB2F2OPw9JM0TqQMdU71939LqqE5Yh',
+      'https://drive.google.com/uc?export=view&id=1tFxz321If7RxBjnjHPAEuF9Ej8h1wc2K',
+    ],
+    cost: 10.99,
+    category: switchh,
+    productType: 'Pressfit Switch Plate',
+  ),
+  Product(
+    name: "Modular Pattern Switch",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1YTqxYMf2ZdcgAFQ0rk61yauGOXku2KzR',
+      'https://drive.google.com/uc?export=view&id=1jMM2-4eKu91HsnFn7E78cwTSXoEa1Hh8',
+      'https://drive.google.com/uc?export=view&id=1jMM2-4eKu91HsnFn7E78cwTSXoEa1Hh8',
+    ],
+    cost: 10.99,
+    category: switchh,
+    productType: 'Pressfit Modular Switch',
+  ),
+  Product(
+    name: "Modular Solid Switch",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1xnjdQZHDd4213E_iOkcLqN8vYYp2eqlf',
+      'https://drive.google.com/uc?export=view&id=13RWtgA9InGbzJuohXOSwK4FLaKd6fX1u',
+      'https://drive.google.com/uc?export=view&id=1vSs1A9bUmuNXQmPFAwHmC2Yq87L6413v',
+    ],
+    cost: 10.99,
+    category: switchh,
+    productType: 'Pressfit Modular Switch',
+  ),
+  Product(
+    name: "MCB",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1XSwbLM7UbqagLQX9ALyb4yKBSQq9ehFe',
+      'https://drive.google.com/uc?export=view&id=1tv3LVVWogcqjlKGXo0TvsQqCee0-r4JY',
+    ],
+    cost: 10.99,
+    category: mcb,
+    productType: 'MCB',
+  ),
+  Product(
+    name: "Mini MCB",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1gDMF28gHPgX_JtZT9ndQIqBnRTIA5xBo',
+    ],
+    cost: 10.99,
+    category: mcb,
+    productType: 'MCB',
+  ),
+  Product(
+    name: "RCCB",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1iPaefiU5Q9WDBJAmqUSzPZcn8clIF89K',
+    ],
+    cost: 10.99,
+    category: mcb,
+    productType: 'RCcB',
+  ),
+  Product(
+    name: "Isolator",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1qr3BUYuAGNlxcb-xdfJbYVyouo_1757r',
+      'https://drive.google.com/uc?export=view&id=1wqra0vhcwvK_Ajm-Ogocer1hbS9XRKBM',
+    ],
+    cost: 10.99,
+    category: mcb,
+    productType: 'Isolator',
+  ),
+  Product(
+    name: "Changeover",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1j7evZIjtUCcaeDJORSQLG_sFtkMAjWzg',
+    ],
+    cost: 10.99,
+    category: mcb,
+    productType: 'Changeover',
+  ),
+  Product(
+    name: "Fuse",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1-wf0lFVI46bBpigF2sU9q24R-q9X70p5',
+    ],
+    cost: 10.99,
+    category: mcb,
+    productType: 'Fuse',
+  ),
+  Product(
+    name: "Armor",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=14HIGM422hwNtW-FU_ojEUFIPi18EgIVb',
+      'https://drive.google.com/uc?export=view&id=1z8IynqPkGpi2TDn_R7tRDgujDrIRYd8F',
+      'https://drive.google.com/uc?export=view&id=1ZBGu6UCVrhLJXfKDsfNAO_KC3g4S0Zyr',
+      'https://drive.google.com/uc?export=view&id=1snMHoLVgyDLq9LoHBfI9bE--GPrBUnxa',
+    ],
+    cost: 10.99,
+    category: mcb,
+    productType: 'Armor',
   ),
 ];

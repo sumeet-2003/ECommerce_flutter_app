@@ -34,8 +34,7 @@ class _HomeState extends State<Home>{
                   Text("Welcome, User",
                       style: AppWidget.introHeading(),
                             ),
-                  Container(
-                      child: const Icon(Icons.person,size: 35,)),
+                  const Icon(Icons.person,size: 35,),
                 ],
               ),
               Text("Greetings from Bizliwale",
@@ -94,7 +93,11 @@ class _HomeState extends State<Home>{
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("Categories",style: AppWidget.search(),),
-                  const Text("See all",style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold),),
+                  GestureDetector(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>const Shopping()));
+                      },
+                      child: const Text("See all",style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold),)),
                 ],
               ),
               Row(
@@ -140,169 +143,123 @@ class _HomeState extends State<Home>{
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("Popular Products Brands",style: AppWidget.search(),),
-                  const Text("See all",style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold),),
+                  GestureDetector(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>const Shopping()));
+                      },
+                      child: const Text("See all",style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold),)),
                 ],
               ),
-              SizedBox(
-                height: 255,
-                width: MediaQuery.of(context).size.width,
-                child: ListView(
-                  shrinkWrap: true,
-                  children: [
-                    Expanded(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.only(top: 5),
-                            decoration: BoxDecoration(
-                              color: const Color(0xffffffff),
-                              borderRadius: BorderRadius.circular(10)
-                            ),
-                            child: Column(
-                              children: [
-                                Image.asset("assets/img/arya-logo.jpg",height: 160,width: 160,),
-                                Text("Arya",style: AppWidget.search(),),
-                              ],
-                            ),
-                          ),
-                           SizedBox(
-                            width: MediaQuery.of(context).size.width/20,
-                          ),
-                          Container(
-                            padding: const EdgeInsets.only(top: 5),
-                            decoration: BoxDecoration(
-                                color: const Color(0xffffffff),
-                                borderRadius: BorderRadius.circular(10)
-                            ),
-                            child: Column(
-                              children: [
-                                Image.asset("assets/img/Bajaj-Electricals-Logo.jpg",height: 160,width: 160,),
-                                Text("Bajaj",style: AppWidget.search(),),
-
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children:[
+                  Container(
+                    height: 150,
+                    width: MediaQuery.of(context).size.width/2.5,
+                    padding: const EdgeInsets.all(5),
+                    margin:const EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                        color: const Color(0xffffffff),
+                        borderRadius: BorderRadius.circular(10)
                     ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 255,
-                width: MediaQuery.of(context).size.width,
-                child: ListView(
-                  shrinkWrap: true,
-                  children: [
-                    Expanded(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.only(top: 5),
-                            decoration: BoxDecoration(
-                                color: const Color(0xffffffff),
-                                borderRadius: BorderRadius.circular(10)
-                            ),
-                            child: GestureDetector(
-                              onTap: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context)=>const ProductDetail()));
-                              },
-                              child: Column(
-                                children: [
-                                  Image.asset("assets/img/havells-logo.jpg",height: 160,width: 160,),
-                                  Text("Havells",style: AppWidget.search(),),
-                                ],
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width/20,
-                          ),
-                          Container(
-                            padding: const EdgeInsets.only(top: 5),
-                            decoration: BoxDecoration(
-                                color: const Color(0xffffffff),
-                                borderRadius: BorderRadius.circular(10)
-                            ),
-                            child: Column(
-                              children: [
-                                Image.asset("assets/img/polar-logo.jpeg",height: 160,width: 160,),
-                                Text("Polar",style: AppWidget.search(),),
-
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
+                    child:
+                     Center(
+                        child: Image.asset('assets/img/arya-logo.jpg',fit: BoxFit.cover),
                     ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 255,
-                width: MediaQuery.of(context).size.width,
-                child: ListView(
-                  shrinkWrap: true,
-                  children: [
-                    Expanded(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.only(top: 5),
-                            decoration: BoxDecoration(
-                                color: const Color(0xffffffff),
-                                borderRadius: BorderRadius.circular(10)
-                            ),
-                            child: GestureDetector(
-                              onTap: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context)=>const ProductDetail()));
-                              },
-                              child: Column(
-                                children: [
-                                  Image.asset("assets/img/pressfit-logo.png",height: 160,width: 160,),
-                                  Text("PressFit",style: AppWidget.search(),),
-                                ],
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width/20,
-                          ),
-                          Container(
-                            padding: const EdgeInsets.only(top: 5),
-                            decoration: BoxDecoration(
-                                color: const Color(0xffffffff),
-                                borderRadius: BorderRadius.circular(10)
-                            ),
-                            child: Column(
-                              children: [
-                                Image.asset("assets/img/polycab-logo.jpeg",height: 160,width: 160,),
-                                Text("Polycab",style: AppWidget.search(),),
-
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
+                  ),
+                  Container(
+                    height: 150,
+                    width: MediaQuery.of(context).size.width/2.5,
+                    padding: const EdgeInsets.all(5),
+                    margin:const EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                        color: const Color(0xffffffff),
+                        borderRadius: BorderRadius.circular(10)
                     ),
-                  ],
-                ),
+                    child:
+                    Center(
+                      child: Image.asset('assets/img/Bajaj-Electricals-Logo.jpg',fit: BoxFit.cover),
+                    ),
+                  ),
+                ],
               ),
-
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children:[
+                  Container(
+                    height: 150,
+                    width: MediaQuery.of(context).size.width/2.5,
+                    padding: const EdgeInsets.all(5),
+                    margin:const EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                        color: const Color(0xffffffff),
+                        borderRadius: BorderRadius.circular(10)
+                    ),
+                    child:
+                    Center(
+                      child: Image.asset('assets/img/polar-logo.jpeg',fit: BoxFit.cover),
+                    ),
+                  ),
+                  Container(
+                    height: 150,
+                    width: MediaQuery.of(context).size.width/2.5,
+                    padding: const EdgeInsets.all(5),
+                    margin:const EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                        color: const Color(0xffffffff),
+                        borderRadius: BorderRadius.circular(10)
+                    ),
+                    child:
+                    Center(
+                      child: Image.asset('assets/img/polycab-logo.jpeg',fit: BoxFit.cover),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children:[
+                  Container(
+                    height: 150,
+                    width: MediaQuery.of(context).size.width/2.5,
+                    padding: const EdgeInsets.all(5),
+                    margin:const EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                        color: const Color(0xffffffff),
+                        borderRadius: BorderRadius.circular(10)
+                    ),
+                    child:
+                    Center(
+                      child: Image.asset('assets/img/pressfit-logo.png',fit: BoxFit.cover),
+                    ),
+                  ),
+                  Container(
+                    height: 150,
+                    width: MediaQuery.of(context).size.width/2.5,
+                    padding: const EdgeInsets.all(5),
+                    margin:const EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                        color: const Color(0xffffffff),
+                        borderRadius: BorderRadius.circular(10)
+                    ),
+                    child:
+                    Center(
+                      child: Image.asset('assets/img/havells-logo.jpg',fit: BoxFit.cover),
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ),
-      )
+      ),
     );
   }
 }
 
 class CategoryTile extends StatelessWidget{
- String image;
- CategoryTile({super.key, required this.image});
+  final String image;
+ const CategoryTile({super.key, required this.image});
   @override
   Widget build(BuildContext context){
     return Container(
