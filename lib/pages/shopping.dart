@@ -981,12 +981,14 @@ Category mcb = Category(title: 'MCB', selections: [
 ]);
 Category applince = Category(title: 'Other Applinces', selections:[
   'Oven',
+  'Air Fryer',
+  'Toaster',
+  'Induction',
+  'Rice Cooker',
   'Mixer Grinder',
-  'Induction'
-  'Iron',
-  'Airfryer',
   'Juicer',
-  'Miscellenious'
+  'Iron',
+  'Miscellaneous'
 ]);
 final kGreyBackground = Colors.grey[200];
 
@@ -1000,7 +1002,6 @@ List<Product> products = [
 
       ],
       cost: 100,
-      description: 'Arya LED Lamp is a smart lamp that can be controlled via an app.',
       category: lights,
       productType: 'Arya-LED-Lamp',
   ),
@@ -1716,5 +1717,411 @@ List<Product> products = [
     cost: 10.99,
     category: mcb,
     productType: 'Armor',
+  ),
+    Product(
+    name: "Havells 35L Oven",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1oucESAbZ0nhdo4T32yJdZRw37ScX2ZTj',
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Oven',
+  ),
+  Product(
+    name: "Havells 28L Oven",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1rPF6QSUcWKuAxAh3Jm58XgPHrwaNjeMJ',
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Oven',
+  ),
+  Product(
+    name: "Havells 66L Oven",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=18ka09XqlsTibdG-mnMwb4eW27AKC4GFE',
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Oven',
+  ),
+  Product(
+    name: "Havells 48L Oven",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1DbZujJ-fOK44kS6-9egpm_8pj9e2P6wm',
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Oven',
+  ),
+  Product(
+    name: "Havells 36L Oven",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1guJNqya4BjJHo8uqWsi62khzw-E_A4-N',
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Oven',
+  ),
+  Product(
+    name: "Havells 24L Oven",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1A5_6AieNjtLWrheQ5xik1oA_aXh8nFNR',
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Oven',
+  ),
+  Product(
+    name: "Havells 16L Oven",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1leZSVnt3wGADyhJt5apEBaF-s72U2Cwf',
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Oven',
+  ),
+  Product(
+    name: "Havells 9L Oven",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1gKK6uVOLBXOgxGWthjN128kTBVtFEAtW',
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Oven',
+  ),
+  Product(
+    name: "Havells Prolife Grande Air Fryer",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1d_c03k4O8hMeAOtFvBZP0dUZg8ugMdaA',
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Air Fryer',
+  ),
+  Product(
+    name: "Havells Digi Grande Air Fryer",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1xExDlheAuM0Ra26lFmUag-Ru0gYOtRrx',
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Air Fryer',
+  ),
+  Product(
+    name: "Havells Air Oven Digi",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1C4e_LEUsL9NWnvSG26Vyd6YEtjveSTyV',
+      'https://drive.google.com/uc?export=view&id=1xI2OYvQ6_mtUE_yW8Bj2vcRNa2l7AV9o',
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Air Fryer',
+  ),
+  Product(
+    name: "Havells Feasto Pop-up Toaster",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1Gsgjg_FUi2sowiJ6yoOfbh_V_m0qYIxN',
+      'https://drive.google.com/uc?export=view&id=1bL3ZWPd3fmE9_VXKynW0sW3sNrHsD9lC',
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Toaster',
+  ),
+  Product(
+    name: "Havells Chrisp Pop-up Toaster",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1s1VHTMOSKEbwVGGOZ88swbdFIwHTPq2M',
+      'https://drive.google.com/uc?export=view&id=1smHjnSs0ZPA1C-8cu3iBKPQS3NrRRAza',
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Toaster',
+  ),
+  Product(
+    name: "Havells Grill & BBQ Toaster",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1Fy_7tS3gSlCtPYrvnXYuOUUnTReD24RD',
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Toaster',
+  ),
+  Product(
+    name: "Havells Sandwich Maker",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1IVOnE_OUK9AgHwtRgcipmUsiFXszUYJM',
+      'https://drive.google.com/uc?export=view&id=1vUVtyP2xRm2wPoHAFs7Oov_8aU7M-yLF',
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Toaster',
+  ),
+  Product(
+    name: "Havells Mini Sandwich Maker",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1QrrXUoSxAA8mfVjrPY3rvWCobbw_7JC6',
+      'https://drive.google.com/uc?export=view&id=184Uh_3zQoTgv9GiypY-liTDfCk-JvgqU',
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Toaster',
+  ),
+  Product(
+    name: "Havells TC20 Induction",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1A90QyRL6VON4Nqovvmvqc_FJlHnqV-2h',
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Induction',
+  ),
+  Product(
+    name: "Havells TC18 Induction",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1lf5tPMqAAFR9FVMgU6qt8uv8gTy5_8pL',
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Induction',
+  ),
+  Product(
+    name: "Havells TC16 Induction",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1Y6xlvtCPUzKPYgDqEqGIGUJkZlqtI_fJ',
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Induction',
+  ),
+  Product(
+    name: "Havells ET-X Induction",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1zcV1iG8GYSmR8w2h_I2mn9NI9ggi7AvA',
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Induction',
+  ),
+  Product(
+    name: "Havells QT Induction",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1ONpE-AySwebF1smiS-S4ESaKNpumIh1C',
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Induction',
+  ),
+  Product(
+    name: "Havells 2.8L Rice Cooker",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1iSCs07HT0anDhHLOxGWJ7Gq9yyHqs4uk',
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Rice Cooker',
+  ),
+  Product(
+    name: "Havells 1.8L Rice Cooker",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1onVAab-HCGjageHEMgPIaHloR7AmYcgC',
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Rice Cooker',
+  ),
+  Product(
+    name: "Havells Hexo 1000W Mixer Grinder",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1KbwSf9aAfgGa5R8VlGbQx197ZhAlLqBS',
+      'https://drive.google.com/uc?export=view&id=1tg9TdjcO_Sr1DfWyOAe2jFzmDi09_58f',
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Mixer Grinder',
+  ),
+  Product(
+    name: "Havells Silencio 500W Mixer Grinder",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1BF84G9WOj0GIE2aEJvhhWgX0DTqi9Vid',
+      'https://drive.google.com/uc?export=view&id=1HC8qGWWbyF0bEaZIpY25oR0iiLDmZde4',
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Mixer Grinder',
+  ),
+  Product(
+    name: "Havells Hunk 800W Mixer Grinder",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1YlL8PtCOojAxjby2TzqfZMkZ3Qb32bDp',
+      'https://drive.google.com/uc?export=view&id=10-NpL27XDST5Wlte0ngWABBiL_xhqHp1',
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Mixer Grinder',
+  ),
+  Product(
+    name: "Havells Tuff 750W Mixer Grinder",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1Ig1Kv-2yzB7xB1PojQVEClDnENGghYGV',
+      'https://drive.google.com/uc?export=view&id=1pmtw6k_HQUuYsKx2qt0TqBb8FwXlyd75',
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Mixer Grinder',
+  ),
+  Product(
+    name: "Havells Aspro 600W Mixer Grinder",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=13hZskWAUQtxsLgh5ZtS-INQm77692HFX',
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Mixer Grinder',
+  ),
+  Product(
+    name: "Havells Hexo 1000W Juicer",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1fiDRB9jwai0buh8V0WWvhcyobYvE6rja',
+      'https://drive.google.com/uc?export=view&id=1ZcDenmLmy5oUgStvDVs72tG3aL5zGkbB'
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Juicer',
+  ),
+  Product(
+    name: "Havells Stilus 500W Juicer",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1NQV4y8B29qM8PJVQP4YMx_y_Ia5xzv0-',
+      'https://drive.google.com/uc?export=view&id=1xX85F6c-0dgxXe1v8mmO5y9f-Jh94IOt'
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Juicer',
+  ),
+  Product(
+    name: "Havells Nutri-Art 200W Juicer",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1sPDDv4G1GuPEFBx5UJcmTxtoQ3P_z73h',
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Juicer',
+  ),
+  Product(
+    name: "Havells Press 30W Juicer",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1D0LvrnU3Aemzi-SAtakTvASGEpl7FLaX',
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Juicer',
+  ),
+  Product(
+    name: "Havells Husky Steam Iron",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1qBDoTZQzzWhEknAik1ro1GX7TBM2oWrb',
+      'https://drive.google.com/uc?export=view&id=14cUb-OOSQ6hqj5bdHEKHiYWsNspMkpcx'
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Iron',
+  ),
+  Product(
+    name: "Havells Plush Steam Iron",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1y2OHHQnXxa0r5mHhzEZPzFLQG7O4mpCH',
+      'https://drive.google.com/uc?export=view&id=1G8BrMHZf_nJyAIISw6BTm7J4wT8KQWv5'
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Iron',
+  ),
+  Product(
+    name: "Havells Stealth Dry Iron",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1aA9-yA6Y4JhiNaZlyw687zo70I5z3ait',
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Iron',
+  ),
+  Product(
+    name: "Havells Insta Dry Iron",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1D9ansqV232lqz8qDzDTuiQ50vuN_YPgu',
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Iron',
+  ),
+  Product(
+    name: "Havells Hand Blender",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1yO8wx_2kwCZLAspqEfhcl9SqeGKo_EwB',
+      'https://drive.google.com/uc?export=view&id=1Lw-qQqJX3XpefcOO0impG3rybf2QNd44',
+      'https://drive.google.com/uc?export=view&id=1Tk80izj0fOHhkUOf44-nHWmdT3DOu9P7',
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Miscellaneous',
+  ),
+  Product(
+    name: "Havells Hand Mixer",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1oihBBJ4zUDHqQ_q2hwGEx_y7JjYshPH4',
+      'https://drive.google.com/uc?export=view&id=1-0XwZBoKpckIVn08hQJdTtXDKeIekDYT',
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Miscellaneous',
+  ),
+  Product(
+    name: "Havells 1.5L Electric Kettle",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=16wYV5hr4pP-blomTZzH5KzBE-bElKNmH',
+      'https://drive.google.com/uc?export=view&id=1IeXbXpwlGnegPKZxlpoSV_wZ7so1PkTX',
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Miscellaneous',
+  ),
+  Product(
+    name: "Havells 1.5L Garment Steamer",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1cE221M9ZywtE9Sd_fScWvIOi3cZohZca',
+      'https://drive.google.com/uc?export=view&id=1W-yhrkV3wQsOf-D242GmznKW_HJ---Qs',
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Miscellaneous',
+  ),
+  Product(
+    name: "Havells 150ml Hand Garment Steamer",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1fntIV90HpK7xgvIp-H1Zu3TLFggOJ9nA',
+      'https://drive.google.com/uc?export=view&id=1nAUkxlnHt3WuG7_LiGRYm7VSSHoj-bCp',
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Miscellaneous',
+  ),
+  Product(
+    name: "Havells 1000W Room Heater",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1QQTuVPDm3O3OcK4j_hkGUPSi0WTTykC9',
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Miscellaneous',
+  ),
+  Product(
+    name: "Havells 800W Room Heater",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1taUeFov2D67ILzkD7W8fUg4Se3hddpD8',
+    ],
+    cost: 10.99,
+    category: applince,
+    productType: 'Miscellaneous',
   ),
 ];

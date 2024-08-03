@@ -1,7 +1,8 @@
-import 'package:back_up/pages/productDetail.dart';
+
 import 'package:back_up/pages/shopping.dart';
 import 'package:back_up/widget/support_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 class Home extends StatefulWidget{
   const Home({super.key});
   @override
@@ -17,6 +18,27 @@ class _HomeState extends State<Home>{
     "assets/img/wires.jpeg",
   ];
 
+  void _launchWeb() async {
+    final Uri url = Uri.parse("https://bizliwale.com");
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Could not launch $url')),
+      );
+    }
+  }
+  void _launchDev() async {
+    final Uri url = Uri.parse("https://chitrashalaproduction.com");
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Could not launch $url')),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -31,30 +53,26 @@ class _HomeState extends State<Home>{
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Welcome, User",
+                  Text("BiZliWale ",
                       style: AppWidget.introHeading(),
                             ),
-                  const Icon(Icons.person,size: 35,),
+                  GestureDetector(
+                    onTap: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('This feature is coming soon...'),
+                        ),
+                      );
+                    },
+                    child: const Icon(Icons.light_rounded,size: 40,color: Color(
+                        0xff1fb8ff),),
+                  ),
                 ],
               ),
-              Text("Greetings from Bizliwale",
+              Text("Electronics Sales & Services",
                 style: AppWidget.greeting(),
               ),
               const SizedBox(height: 20,),
-              Container(
-                padding: const EdgeInsets.only(left: 15),
-                decoration: BoxDecoration(
-                  color: const Color(0xffffffff),
-
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                child: TextField(
-                  decoration: InputDecoration(border: InputBorder.none,
-                  hintText: "Search",hintStyle: AppWidget.search(),
-                    prefixIcon: const Icon(Icons.search),
-                  ),
-                ),
-              ),
               Row(
                 children: [
                   Expanded(
@@ -65,20 +83,20 @@ class _HomeState extends State<Home>{
                           Container(
                             margin: const EdgeInsets.only(top: 20),
                               height: 130,
-                              width: 270,
-                              child: Image.asset('assets/img/logo.png',fit: BoxFit.cover)
+                              width: MediaQuery.of(context).size.width/1.2,
+                              child: Image.asset('assets/img/sale-1.png',fit: BoxFit.cover)
                           ),
                           Container(
                               margin: const EdgeInsets.only(top: 20),
                               height: 130,
-                              width: 270,
-                              child: Image.asset('assets/img/logo.png',fit: BoxFit.cover)
+                              width: MediaQuery.of(context).size.width/1.2,
+                              child: Image.asset('assets/img/sale-2.png',fit: BoxFit.cover)
                           ),
                           Container(
                               margin: const EdgeInsets.only(top: 20),
                               height: 130,
-                              width: 270,
-                              child: Image.asset('assets/img/logo.png',fit: BoxFit.cover)
+                              width: MediaQuery.of(context).size.width/1.2,
+                              child: Image.asset('assets/img/sale-3.jpg',fit: BoxFit.cover)
                           ),
                         ],
                       ),
@@ -163,9 +181,14 @@ class _HomeState extends State<Home>{
                         borderRadius: BorderRadius.circular(10)
                     ),
                     child:
-                     Center(
-                        child: Image.asset('assets/img/arya-logo.jpg',fit: BoxFit.cover),
-                    ),
+                     GestureDetector(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>const Shopping()));
+                        },
+                       child: Center(
+                          child: Image.asset('assets/img/arya-logo.jpg',fit: BoxFit.cover),
+                                           ),
+                     ),
                   ),
                   Container(
                     height: 150,
@@ -177,8 +200,13 @@ class _HomeState extends State<Home>{
                         borderRadius: BorderRadius.circular(10)
                     ),
                     child:
-                    Center(
-                      child: Image.asset('assets/img/Bajaj-Electricals-Logo.jpg',fit: BoxFit.cover),
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>const Shopping()));
+                      },
+                      child: Center(
+                        child: Image.asset('assets/img/Bajaj-Electricals-Logo.jpg',fit: BoxFit.cover),
+                      ),
                     ),
                   ),
                 ],
@@ -196,8 +224,13 @@ class _HomeState extends State<Home>{
                         borderRadius: BorderRadius.circular(10)
                     ),
                     child:
-                    Center(
-                      child: Image.asset('assets/img/polar-logo.jpeg',fit: BoxFit.cover),
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>const Shopping()));
+                      },
+                      child: Center(
+                        child: Image.asset('assets/img/polar-logo.jpeg',fit: BoxFit.cover),
+                      ),
                     ),
                   ),
                   Container(
@@ -210,8 +243,13 @@ class _HomeState extends State<Home>{
                         borderRadius: BorderRadius.circular(10)
                     ),
                     child:
-                    Center(
-                      child: Image.asset('assets/img/polycab-logo.jpeg',fit: BoxFit.cover),
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>const Shopping()));
+                      },
+                      child: Center(
+                        child: Image.asset('assets/img/polycab-logo.jpeg',fit: BoxFit.cover),
+                      ),
                     ),
                   ),
                 ],
@@ -229,8 +267,13 @@ class _HomeState extends State<Home>{
                         borderRadius: BorderRadius.circular(10)
                     ),
                     child:
-                    Center(
-                      child: Image.asset('assets/img/pressfit-logo.png',fit: BoxFit.cover),
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>const Shopping()));
+                      },
+                      child: Center(
+                        child: Image.asset('assets/img/pressfit-logo.png',fit: BoxFit.cover),
+                      ),
                     ),
                   ),
                   Container(
@@ -243,11 +286,67 @@ class _HomeState extends State<Home>{
                         borderRadius: BorderRadius.circular(10)
                     ),
                     child:
-                    Center(
-                      child: Image.asset('assets/img/havells-logo.jpg',fit: BoxFit.cover),
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>const Shopping()));
+                      },
+                      child: Center(
+                        child: Image.asset('assets/img/havells-logo.jpg',fit: BoxFit.cover),
+                      ),
                     ),
                   ),
                 ],
+              ),
+               const SizedBox(
+                height: 20,
+              ),
+              Container(
+                height: 180,
+                width: MediaQuery.of(context).size.width,
+                padding: const EdgeInsets.only(top: 20),
+                decoration: BoxDecoration(
+                    color: const Color(0xffeaeaea),
+                    borderRadius: BorderRadius.circular(15),
+                    border: Border.all(color: Colors.blue,width: 4)
+                ),
+                child: Column(
+                    children:[
+                      Text("BiZliWale",style: AppWidget.buyNow()),
+                      Text("One stop solution for all electrical needs",style: AppWidget.search()),
+                      Text("Visit Our Website to Schedule a Service",style: AppWidget.search()),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(Icons.phone_in_talk_rounded,color: Color(
+                              0xff1a58e8),size: 20,),
+                          const Text("  0771-352-0523",style: TextStyle(color: Colors.blue,fontSize: 16),),
+                          const SizedBox(width: 20,),
+                          GestureDetector(
+                            onTap: _launchWeb,
+                            child:
+                            const Text("www.bizliwale.com",style: TextStyle(color: Color(
+                                0xff0059ff),fontSize: 16),),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 10,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          GestureDetector(
+                            onTap: _launchDev,
+                              child: Text("Contact Developers  ",style: AppWidget.search(),)),
+                          GestureDetector(
+                            onTap: _launchDev,
+                            child: const Icon(Icons.android_rounded,size:25,color: Color(0xff1fb8ff),),
+                          ),
+                        ],
+                      ),
+                    ],
+                ),
+              ),
+              const SizedBox(
+                height: 20,
               ),
             ],
           ),

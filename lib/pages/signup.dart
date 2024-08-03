@@ -79,7 +79,7 @@ class _SignUpState extends State<SignUp> {
       const msg = "*Repair Request*";
       final message = '$msg\nName: $name\nPhone: $phone\nAddress: $address\nProblem: $problem\nEstimated Cost: $_estimatedCost';
 
-      final Uri url = Uri.parse('https://wa.me/919770497756?text=${Uri.encodeComponent(message)}');
+      final Uri url = Uri.parse('https://wa.me/+919303541069?text=${Uri.encodeComponent(message)}');
 
       if (await canLaunchUrl(url)) {
         await launchUrl(url,mode: LaunchMode.externalApplication);
@@ -92,7 +92,7 @@ class _SignUpState extends State<SignUp> {
   }
 
   void _openDialPad() async {
-    const phoneNumber = 'tel:+919770497756';
+    const phoneNumber = 'tel:+918964930559';
     final Uri url = Uri.parse(phoneNumber);
 
     if (await canLaunchUrl(url)) {
