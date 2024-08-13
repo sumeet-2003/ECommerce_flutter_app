@@ -140,16 +140,21 @@ class _HomeState extends State<Home>{
                 ),
               ),
                   Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.all(5),
-                      height: 150,
-                      child: ListView.builder(
-                          itemCount: categories.length,
-                          shrinkWrap: true,
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context,index){
-                          return CategoryTile(image: categories[index]);
-                      }),
+                    child: GestureDetector(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>const Shopping()));
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(5),
+                        height: 150,
+                        child: ListView.builder(
+                            itemCount: categories.length,
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context,index){
+                            return CategoryTile(image: categories[index]);
+                        }),
+                      ),
                     ),
                   ),
                 ],
@@ -186,7 +191,7 @@ class _HomeState extends State<Home>{
                           Navigator.push(context, MaterialPageRoute(builder: (context)=>const Shopping()));
                         },
                        child: Center(
-                          child: Image.asset('assets/img/arya-logo.jpg',fit: BoxFit.cover),
+                          child: Image.asset('assets/img/surya-logo.jpg',fit: BoxFit.cover),
                                            ),
                      ),
                   ),
@@ -248,7 +253,7 @@ class _HomeState extends State<Home>{
                         Navigator.push(context, MaterialPageRoute(builder: (context)=>const Shopping()));
                       },
                       child: Center(
-                        child: Image.asset('assets/img/polycab-logo.jpeg',fit: BoxFit.cover),
+                        child: Image.asset('assets/img/pressfit-logo.png',fit: BoxFit.cover),
                       ),
                     ),
                   ),
@@ -272,7 +277,7 @@ class _HomeState extends State<Home>{
                         Navigator.push(context, MaterialPageRoute(builder: (context)=>const Shopping()));
                       },
                       child: Center(
-                        child: Image.asset('assets/img/pressfit-logo.png',fit: BoxFit.cover),
+                        child: Image.asset('assets/img/polycab-logo.jpeg',fit: BoxFit.cover),
                       ),
                     ),
                   ),
@@ -298,7 +303,7 @@ class _HomeState extends State<Home>{
                 ],
               ),
                const SizedBox(
-                height: 20,
+                height: 30,
               ),
               Container(
                 height: 180,

@@ -1,7 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-// https://drive.google.com/file/d/1H7qkY4MDl97q8u_wuBQXYuNehUEJ8ukl/view?usp=drive_link
+import 'package:url_launcher/url_launcher.dart';
+
 const String lightImg='https://drive.google.com/uc?export=view&id=10sivGGiQr-BAgx4ISxCx5vUQcF7if48C';
 const String fanImg = 'https://drive.google.com/uc?export=view&id=136ST3URsYINM83hLx4xq4BViEfJsq-jU';
 const String wireImg ='https://drive.google.com/uc?export=view&id=1dqoOVQVhzDKXkPQfjWuGs4WVMx68Q-To';
@@ -318,11 +319,15 @@ class _ProductScreenState extends State<ProductScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Expanded(
-                  child: Image.network(
-                    selectedImageUrl!,
-                    fit: BoxFit.cover,
-                    color: kGreyBackground,
-                    colorBlendMode: BlendMode.multiply,
+                  child: InteractiveViewer(
+                    minScale: 1,
+                    maxScale: 5,
+                    child: Image.network(
+                      selectedImageUrl!,
+                      fit: BoxFit.cover,
+                      color: kGreyBackground,
+                      colorBlendMode: BlendMode.multiply,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 18),
@@ -620,7 +625,18 @@ class _CartScreenState extends State<CartScreen> {
     cart.removeListener(updateState);
     super.dispose();
   }
+  void _openDialPad() async {
+    const phoneNumber = 'tel:+918964930559';
+    final Uri url = Uri.parse(phoneNumber);
 
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url, mode: LaunchMode.externalApplication);
+    } else {// Debugging output
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Could not launch $url')),
+      );
+    }
+  }
   void updateState() => setState(() {});
 
   @override
@@ -727,7 +743,9 @@ class _CartScreenState extends State<CartScreen> {
                   ],
                 ),
                 CallToActionButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    _openDialPad();
+                  },
                   labelText: 'Check Out',
                   minSize: const Size(220, 45),
                 ),
@@ -889,10 +907,10 @@ class Product {
   final String? description;
   final List<String>? sizes;
 
-  /// Which overall category this product belongs in. e.g - Men, Women, Pets, etc.
+  /// Which overall category this product belongs
   final Category category;
 
-  /// Represents type of product such as shirt, jeans, pet treats, etc.
+  /// Represents type of product
   final String productType;
 
   Product(
@@ -943,17 +961,16 @@ class OrderItem {
 
 // TODO: Come up with your own categories
 Category lights = Category(title: "Lights", selections: [
-  'Arya-LED-Lamp',
-  'Arya Spot Light',
-  'Arya Street Light',
-  'Arya High Bay',
-  'Arya TubeLight',
-  "Arya Lantern",
+  'Surya LED Lamp',
+  'Surya TubeLight',
+  'Surya Ceiling Light',
+  'Surya Spot Light',
+  'Surya Street Light',
+  "Surya Flood Light",
 ]);
 Category fan = Category(title: 'Fan', selections: [
-  'Polar Ceiling Fan',
-  'Polar Table Fan',
-  'Polar Wall Fan',
+  'Polar Economy Fan',
+  'Polar Regular Fan',
   'Polar Exhaust Fan',
   'Havells Ceiling Fan',
   'Havells Table Fan',
@@ -977,17 +994,18 @@ Category mcb = Category(title: 'MCB', selections: [
   'Isolator',
   'Changeover',
   'Fuse',
-  'Armor',
+  'Distribution Box',
 ]);
 Category applince = Category(title: 'Other Applinces', selections:[
+  'Iron',
+  'Mixer Grinder',
+  'Water Heater',
+  'Induction',
   'Oven',
   'Air Fryer',
   'Toaster',
-  'Induction',
   'Rice Cooker',
-  'Mixer Grinder',
   'Juicer',
-  'Iron',
   'Miscellaneous'
 ]);
 final kGreyBackground = Colors.grey[200];
@@ -995,341 +1013,284 @@ final kGreyBackground = Colors.grey[200];
 // TODO: Fetch products and feed into widgets
 List<Product> products = [
   Product(
-      name: 'Arya Led lights',
+      name: 'Surya Neo MAXX 10W LED',
       imageUrls: [
-        'https://drive.google.com/uc?export=view&id=1-Ldu_ciz2PlcLHpUDEphdhlK1SMX6fQJ',
-        'https://drive.google.com/uc?export=view&id=19oT7Iyc217K-cFCGuvs4Bq3smh5SJFhc',
-
+        'https://drive.google.com/uc?export=view&id=1vLr-oXx0YQWrOvTkspcWakS0YKt_-2tO',
       ],
-      cost: 100,
+      cost: 163,
+      description: '10W - ₹163 | 12W - ₹275 | 15W - ₹320 | 18W - ₹450',
       category: lights,
-      productType: 'Arya-LED-Lamp',
+      productType: 'Surya LED Lamp',
   ),
   Product(
-    name: 'Arya LED Lamp',
+    name: 'Surya DURO 30W LED Lamp',
     imageUrls: [
-      'https://drive.google.com/uc?export=view&id=1ld19icEZ9dsqTodgQ1jdZj0DGNLbSYSK',
-      'https://drive.google.com/uc?export=view&id=1qXIqlbQ4z3-n8ZPekgMp7rG_6Jn0mcs5',
+      'https://drive.google.com/uc?export=view&id=1JvBNGHPl4dp3Y97C95LS8zN7WsTC9Psh',
     ],
-    cost: 200,
+    cost: 750,
+    description: '30W - ₹750 | 40W - ₹850 | 50W - ₹999 ',
     category: lights,
-    productType: 'Arya-LED-Lamp',
+    productType: 'Surya LED Lamp',
   ),
   Product(
-    name: 'Rota-M Spot Light' ,
+    name: 'Surya 0.5W LED Lamp',
     imageUrls: [
-      'https://drive.google.com/uc?export=view&id=1H9I2GKuNjKXWNGlt1CW5c3rthC8cPZCV',
-      'https://drive.google.com/uc?export=view&id=1pxcqHdlXsI2KMwhy9UvHf3XSUDfO15or',
+      'https://drive.google.com/uc?export=view&id=1AFEbDw1DF6QyDuDsyNICGK87uZEeGmw5',
+      'https://drive.google.com/uc?export=view&id=1NGIrENIQwquy_bN7Trnqkshf1yW94ISu',
+      'https://drive.google.com/uc?export=view&id=1ZRqoiHrRf-hPRf3tSG8bMyZaAIp1K8He',
     ],
-    cost: 200,
+    cost: 55,
+    description: 'Single Colour 0.5W - ₹55 | Rainbow auto colour changing RGB 0.5W - ₹75',
     category: lights,
-    productType: 'Arya Spot Light',
+    productType: 'Surya LED Lamp',
   ),
   Product(
-    name: 'Spoton-M Spot Light',
+    name: 'ECO Prime 4W SpotLight' ,
     imageUrls: [
-      'https://drive.google.com/uc?export=view&id=1ocMFN3chTbiW0GP2Yfu425ehCXkz3ZD9',
-      'https://drive.google.com/uc?export=view&id=1KeaJykoM7kJUF3c3UGtdIxBCzHqziLdo',
+      'https://drive.google.com/uc?export=view&id=1nSfY0SK-5X-UBxUuPTmVqIv4qAxuyOud',
     ],
-    cost: 29.99,
+    cost: 425,
+    description: '4W - ₹425 | 6W - ₹475 | 9W - ₹750 | 12W - ₹900 ',
     category: lights,
-    productType: 'Arya Spot Light',
+    productType: 'Surya Spot Light',
   ),
   Product(
-    name: "Spoton-Gold Spot Light",
+    name: 'Aura Prime 4W SpotLight',
     imageUrls: [
-      'https://drive.google.com/uc?export=view&id=1eYuuOfYpX9DO62dcvTM2NfV5FPKvgAiR',
-      'https://drive.google.com/uc?export=view&id=1Qggv4SukK9jclnet51G9fp0DR6OnTRtB',
-
-    ],
-    cost: 300,
-    category: lights,
-    productType: 'Arya Spot Light',
-  ),
-  Product(
-    name: "Cylinder Spot Light",
-    imageUrls: [
-      'https://drive.google.com/uc?export=view&id=18Zkt-Vs1nNgWni1emLvPXQc7Hghk9bj5',
-      'https://drive.google.com/uc?export=view&id=1Qvn6cChJot6A6ax3ipBmWNjayQZtPjj7',
-
+      'https://drive.google.com/uc?export=view&id=1u8F3QK7tCMl-yumzcRTUgPsMu9zvEC1D',
     ],
     cost: 300,
+    description: '4W - ₹300 | 6W - ₹400 | 12W - ₹550 ',
     category: lights,
-    productType: 'Arya Spot Light',
+    productType: 'Surya Spot Light',
   ),
   Product(
-    name: 'Street Light',
+    name: "Prime Spot 1W SpotLight",
     imageUrls: [
-      'https://drive.google.com/uc?export=view&id=1k92b35aetl6FVcTuy_IDyskKrKgQZBPw',
+      'https://drive.google.com/uc?export=view&id=1fcHD4HLqvTEvY3MOhBn34FUuLfgU8hHh',
+    ],
+    cost: 199,
+    category: lights,
+    productType: 'Surya Spot Light',
+  ),
+  Product(
+    name: 'Surya GeNXT 20W Street Light',
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1Ke61OryX6txNcxrpjQYHoSwzfd6Otg-p',
+    ],
+    cost: 2000,
+    description: '20W - ₹2000 | 30W - ₹2500 |  50W - ₹4000',
+    category: lights,
+    productType: 'Surya Street Light',
+  ),
+  Product(
+    name: "Surya GeNXT 30W Flood Light",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1gIHQNvo478p_Rdc71b06fTa0-HdJcPpC',
+    ],
+    cost: 2500,
+    description: '30W - ₹2500 | 50W - ₹4000 | 100W - ₹7000',
+    category: lights,
+    productType: 'Surya Flood Light',
+  ),
+  Product(
+    name: "Surya GeNXT 10W Flood Light",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1chF-WAww722QumxRcjlfhDZML1ZhTgo_',
+    ],
+    cost: 1500,
+    description: '10W - ₹1500 | 20W - ₹2000 | 30W - ₹2500 | 50W - ₹3500',
+    category: lights,
+    productType: 'Surya Flood Light',
+  ),
+  Product(
+    name: "Surya Dazzle Round 3W Ceiling Light",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=18MWmnbEPE87MjD2ja54nQwswG53wlAfK',
+    ],
+    cost: 400,
+    description: '3W - ₹400 | 6W - ₹500 | 10W - ₹600 | 12W - ₹725 | 15W - ₹850 | 22W - ₹1000',
+    category: lights,
+    productType: 'Surya Ceiling Light',
+  ),
+  Product(
+    name: "Surya Dazzle Square 3W Ceiling Light",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1dfiCXBflubJdBkOifmV_jDX3omdzNIck',
+    ],
+    cost: 400,
+    description: '3W - ₹400 | 6W - ₹500 | 10W - ₹600 | 12W - ₹725 | 15W - ₹850 | 22W - ₹1000',
+    category: lights,
+    productType: 'Surya Ceiling Light',
+  ),
+  Product(
+    name: "Surya SuperStriker 4W Ceiling Light",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1lgIUw8q4OsAxVpyj5xncpgELz-25Ugsb',
+    ],
+    cost: 225,
+    description: '4W - ₹225 | 8W - ₹300 ',
+    category: lights,
+    productType: 'Surya Ceiling Light',
+  ),
+  Product(
+    name: "Surya Smart Downlight 15W ",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1Zg7eMZ6eXZLnb-_GWhnIpXesWxJgYEbK',
+    ],
+    cost: 1500,
+    description: '15W LED* - ₹1500 + Remote - ₹500 ',
+    category: lights,
+    productType: 'Surya Ceiling Light',
+  ),
+  Product(
+    name: "Surya G-Line ECO 5W",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=12Q0oG3isNWsXF2st_33wCPNLYj1k0IqR',
+    ],
+    cost: 300,
+    description: '5W - ₹300 | 10W - ₹350 | 20W - ₹450 | 25W - ₹500',
+    category: lights,
+    productType: 'Surya TubeLight',
+  ),
+  Product(
+    name: "Surya G-Line ECO Colour 20W",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1ot19bddjE_YNJ8PWP-wNY_snAttduXvJ',
+      'https://drive.google.com/uc?export=view&id=16EV4kieeSde_C8hQSYwo2G2hw8zyTaPT',
+    ],
+    cost: 450,
+    category: lights,
+    productType: 'Surya TubeLight',
+  ),
+  Product(
+    name: "Surya AMAZE 40W LED",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1CccpNzoajtDkAjv38DLZp7rxm0XI0ylK',
+    ],
+    cost: 999,
+    description: '40W - ₹999 | 48W - ₹1200 | 60W - ₹2500 ',
+    category: lights,
+    productType: 'Surya TubeLight',
+  ),
+  Product(
+    name: 'Meganite-HS 600MM Ceiling Fan',
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1ta9tlEiI5hvGMKjk9fx6qDWwxHwVU2fG',
+      'https://drive.google.com/uc?export=view&id=1Ay83anh-Sd4DRVC3qBq6DBUevE1rbyE9',
+    ],
+    cost: 700,
+    description: '600MM - ₹700 | 900MM - ₹750 | 1200MM - ₹800',
+    category: fan,
+    productType: 'Polar Economy Fan',
+  ),
+  Product(
+    name: 'Meganite-DECO 900MM Ceiling Fan',
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1LYNpPUJ7QDomerXBwRn4q2_7Y-CV_98g',
+      'https://drive.google.com/uc?export=view&id=1_QBPkfYyNb8ufnRGlMqIzuqMPhrbUm86',
+    ],
+    cost: 750,
+    category: fan,
+    productType: 'Polar Economy Fan',
+  ),
+  Product(
+    name: 'Winchester 1200MM Ceiling Fan',
+    imageUrls: [
+      //TODO links not working returning null
+      'https://drive.google.com/uc?export=view&id=1H2hnU20lPpKX3zzHppC3ernwTdKDBi90',
+      'https://drive.google.com/uc?export=view&id=1Y5QIwff7YbbnpCw35gqq4KoIs88dHBuz',
+    ],
+    cost: 950,
+    category: fan,
+    productType: 'Polar Economy Fan',
+  ),
+  Product(
+    name: 'Pavilion-HS 900MM Fan',
+    imageUrls: [
+      //TODO links not working returning null
+      'https://drive.google.com/uc?export=view&id=1CD3OKmmL7FXQK3Q2L8tvTn6rrSESWYa7',
+      'https://drive.google.com/uc?export=view&id=1uwBR0xeLnkMZvcTWsiElKo87L5yaSEA_',
+    ],
+    cost: 800,
+    category: fan,
+    productType: 'Polar Economy Fan',
+  ),
+  Product(
+    name: 'Payton 1400MM Ceiling Fan',
+    imageUrls: [
+      //TODO links not working returning null
+      'https://drive.google.com/uc?export=view&id=1KMOAgerDY-5HyK2OqUUs0N0FK1fdYXfG',
+      'https://drive.google.com/uc?export=view&id=19__lRXAir1THRj0Vx-IiAs07Wu9H4iD9',
+    ],
+    cost: 700,
+    category: fan,
+    productType: 'Polar Economy Fan',
+  ),
+  Product(
+    name: 'Prolific 1200MM Fan',
+    imageUrls: [
+      //TODO links not working returning null
+      'https://drive.google.com/uc?export=view&id=1LTZ9SPv0rG8kC8x03b0UgWhnswQIAsQy',
+      'https://drive.google.com/uc?export=view&id=1MBRUOTzIkWoddxfpu8PikvZDdxz0UFvs',
+    ],
+    cost: 700,
+    category: fan,
+    productType: 'Polar Regular Fan',
+  ),
+  Product(
+    name: 'Corvette Anti Dust 1200MM Fan',
+    imageUrls: [
+      //TODO links not working returning null
+      'https://drive.google.com/uc?export=view&id=1LULQ1ygkbYaaiZaeAJWFbo535GsnDfDC',
+      'https://drive.google.com/uc?export=view&id=1ET-fJOL2SaxWn9OFmuxSnpW4g3V54pQ1',
+    ],
+    cost: 900,
+    category: fan,
+    productType: 'Polar Regular Fan',
+  ),
+  Product(
+    name: 'Winpro MX 1200MM Fan',
+    imageUrls: [
+      //TODO links not working returning null
+      'https://drive.google.com/uc?export=view&id=10j7bUkKhI82idKQgLnwqnsgRHOoSj1Jl',
+      'https://drive.google.com/uc?export=view&id=1R7JdQKBnlRrQm2LVppIPzjt-grLRYRV6',
+    ],
+    cost: 800,
+    category: fan,
+    productType: 'Polar Regular Fan',
+  ),
+  Product(
+    name: 'Winpro 900MM Fan',
+    imageUrls: [
+      //TODO links not working returning null
+      'https://drive.google.com/uc?export=view&id=1k1JZw4jPouRkYWngOQBhb_vsjuDp4EzR',
+      'https://drive.google.com/uc?export=view&id=1An0RnM89nD2imcZdbp-EQ20egTisMONQ',
     ],
     cost: 500,
-    category: lights,
-    productType: 'Arya Street Light',
-  ),
-  Product(
-    name: "Dolphin Street Light",
-    imageUrls: [
-      'https://drive.google.com/uc?export=view&id=1eAixB_LHwxfKBOxuATdaCkbQb8eGR-Cm',
-    ],
-    cost: 200,
-    category: lights,
-    productType: 'Arya Street Light',
-  ),
-  Product(
-    name: "XBeam Street Light",
-    imageUrls: [
-      'https://drive.google.com/uc?export=view&id=1LC3rnnkcUgu6tNCFT-Rzkxps2B76t5Oi',
-    ],
-    cost: 200,
-    category: lights,
-    productType: 'Arya Street Light',
-  ),
-  Product(
-    name: "Solar Street Light",
-    imageUrls: [
-      'https://drive.google.com/uc?export=view&id=1o1-KzfJK2Uru2juiohCdnBfWs-DvbBCd',
-    ],
-    cost: 200,
-    category: lights,
-    productType: 'Arya Street Light',
-  ),
-  Product(
-    name: "Integrated Solar Street Light",
-    imageUrls: [
-      'https://drive.google.com/uc?export=view&id=1kf5Cn5CHAeBLaKJcy0eoxVcjZrFwp3Ji',
-    ],
-    cost: 200,
-    category: lights,
-    productType: 'Arya Street Light',
-  ),
-  Product(
-    name: "Robo-1 High Bay",
-    imageUrls: [
-      'https://drive.google.com/uc?export=view&id=15lvos9fmsrdMuPiSwT5l0lz9gDRAr2D_',
-    ],
-    cost: 200,
-    category: lights,
-    productType: 'Arya High Bay',
-  ),
-  Product(
-    name: "Sudarshan High Bay",
-    imageUrls: [
-      'https://drive.google.com/uc?export=view&id=1Vxyp8BmJ-PGJknEzLLL4BEhf3w5tgiTd',
-    ],
-    cost: 200,
-    category: lights,
-    productType: 'Arya High Bay',
-  ),
-  Product(
-    name: "Lentis High Bay",
-    imageUrls: [
-      'https://drive.google.com/uc?export=view&id=1sCbZcUQ3k-Gcst6VinMhjluUad8HDwyI',
-    ],
-    cost: 200,
-    category: lights,
-    productType: 'Arya High Bay',
-  ),
-  Product(
-    name: "Tube Light-PC",
-    imageUrls: [
-      'https://drive.google.com/uc?export=view&id=1QMx0W_D4Y3x5ak2TQkgurPRz8lZziqou',
-    ],
-    cost: 200,
-    category: lights,
-    productType: 'Arya TubeLight',
-  ),
-  Product(
-    name: "Retro Tube Light(Al)",
-    imageUrls: [
-      'https://drive.google.com/uc?export=view&id=1YQx5CYbdaX24eF_SECL2Gk5sJkE_u_sR',
-    ],
-    cost: 200,
-    category: lights,
-    productType: 'Arya TubeLight',
-  ),
-  Product(
-    name: "Linear Tube Light",
-    imageUrls: [
-      'https://drive.google.com/uc?export=view&id=1nXeRmDYvIgE48lbxHBBEg2XDHHDVv480',
-    ],
-    cost: 200,
-    category: lights,
-    productType: 'Arya TubeLight',
-  ),
-  Product(
-    name: "Post Top Lantern",
-    imageUrls: [
-      'https://drive.google.com/uc?export=view&id=1qGCjkNTOvemRJwpJDloDldfAk6ii1pSP',
-    ],
-    cost: 200,
-    category: lights,
-    productType: 'Arya Lantern',
-  ),
-  Product(
-    name: "Hanging Lantern",
-    imageUrls: [
-      'https://drive.google.com/uc?export=view&id=1MoEf2ONvu_E_lrnvAjVcNVJWQjK0G0Rx',
-    ],
-    cost: 200,
-    category: lights,
-    productType: 'Arya Lantern',
-  ),
-  Product(
-    name: "Bollard Lantern",
-    imageUrls: [
-      'https://drive.google.com/uc?export=view&id=13sq51YLVzHk8c3u875r0ZuwD2ITm9wIa',
-    ],
-    cost: 200,
-    category: lights,
-    productType: 'Arya Lantern',
-  ),
-  Product(
-    name: "Decorative Pole Lantern",
-    imageUrls: [
-      'https://drive.google.com/uc?export=view&id=1awwgDGqDYyPPtRu2yrVzu1KurBARGA2P',
-    ],
-    cost: 200,
-    category: lights,
-    productType: 'Arya Lantern',
-  ),
-  Product(
-    name: 'EfiSlim Ceiling Fan',
-    imageUrls: [
-      'https://drive.google.com/uc?export=view&id=1KULu3KYplIhlkp2NCEtcnKWPy8xQbL0D',
-      'https://drive.google.com/uc?export=view&id=1PcpuG3pHk2zvt1NBpqTNzPfZjG8EqrUA',
-    ],
-    cost: 16.99,
     category: fan,
-    productType: 'Polar Ceiling Fan',
+    productType: 'Polar Regular Fan',
   ),
   Product(
-    name: 'Prolific Ceiling Fan',
-    imageUrls: [
-      'https://drive.google.com/uc?export=view&id=1Z7ghwfAojEt1hFzxZ8n0ZLfR1DC878Q5',
-      'https://drive.google.com/uc?export=view&id=1KjzT785hRFI719UdY1MfhnVNSEFljYJI',
-    ],
-    cost: 22.99,
-    category: fan,
-    productType: 'Polar Ceiling Fan',
-  ),
-  Product(
-    name: 'PS-31 Ceiling Fan',
+    name: 'Radiant 1200MM Fan',
     imageUrls: [
       //TODO links not working returning null
-      'https://drive.google.com/uc?export=view&id=1Z9VriKGzA2Ad6a7aq9sSt1mK5tMyCobd',
-      'https://drive.google.com/uc?export=view&id=1QSRqwY4buQOUZ8mPXPli9nrhP2QECwqs',
+      'https://drive.google.com/uc?export=view&id=12ZoSXQQWTxJA7mb1OysXi-SG7VECRmLd',
+      'https://drive.google.com/uc?export=view&id=1007fx455D1G5tTEuRUxHBZdzKO3pU7vy',
     ],
-    cost: 28.99,
+    cost: 700,
     category: fan,
-    productType: 'Polar Ceiling Fan',
+    productType: 'Polar Regular Fan',
   ),
   Product(
-    name: 'Efysavy Anit-Dust Fan',
-    imageUrls: [
-      //TODO links not working returning null
-      'https://drive.google.com/uc?export=view&id=1cSf_uWGGkbgwSpa2f-kjIddA_Y65HEv3',
-      'https://drive.google.com/uc?export=view&id=1xJjP7-1DgxyQXQ1OZz-Z93Ed6gDtD7Ca',
-    ],
-    cost: 28.99,
-    category: fan,
-    productType: 'Polar Ceiling Fan',
-  ),
-  Product(
-    name: 'Winaire++ Ceiling Fan',
-    imageUrls: [
-      //TODO links not working returning null
-      'https://drive.google.com/uc?export=view&id=1yAjheYyT--EXyHnCwAPjEr0UScsTlAze',
-      'https://drive.google.com/uc?export=view&id=1ig4FXelLalNFfqOITAEWNY9ZzFDy8ZcA',
-    ],
-    cost: 28.99,
-    category: fan,
-    productType: 'Polar Ceiling Fan',
-  ),
-  Product(
-    name: 'Mini Ceiling Fan',
-    imageUrls: [
-      //TODO links not working returning null
-      'https://drive.google.com/uc?export=view&id=1yyH4k6OO0uefmzKUWjykdbGrcAwJuvaa',
-      'https://drive.google.com/uc?export=view&id=1sxlF8JH3G4Dc8wisW7Kv3XBph7gVrNzV',
-    ],
-    cost: 28.99,
-    category: fan,
-    productType: 'Polar Ceiling Fan',
-  ),
-  Product(
-    name: 'Pinnacle Table Fan',
-    imageUrls: [
-      //TODO links not working returning null
-      'https://drive.google.com/uc?export=view&id=19_LzL89Crnf3JmHmP1KqFdbwsw67lBd5',
-      'https://drive.google.com/uc?export=view&id=1xmfGLjxy_BeQj0K7KNBVHaaVgLSgVbvB',
-    ],
-    cost: 28.99,
-    category: fan,
-    productType: 'Polar Table Fan',
-  ),
-  Product(
-    name: 'Annexer-MB Table Fan',
-    imageUrls: [
-      //TODO links not working returning null
-      'https://drive.google.com/uc?export=view&id=1GRg_ZXZmfh6xTdc7t4R_3PD42y3qNVyu',
-      'https://drive.google.com/uc?export=view&id=1r6H22S2icRfwzGbRLSwV3lVSqD9e_UuC',
-    ],
-    cost: 28.99,
-    category: fan,
-    productType: 'Polar Table Fan',
-  ),
-  Product(
-    name: 'Conquest Table Fan',
-    imageUrls: [
-      //TODO links not working returning null
-      'https://drive.google.com/uc?export=view&id=1QzDlM9GlJu7ZV7ciseHKNufyDRXnsejz',
-      'https://drive.google.com/uc?export=view&id=1_a1tIiAEjPtKT-9DhhPwTV9pzKFdAP_K',
-    ],
-    cost: 28.99,
-    category: fan,
-    productType: 'Polar Table Fan',
-  ),
-  Product(
-    name: 'Stormy-Neo Table Fan',
-    imageUrls: [
-      //TODO links not working returning null
-      'https://drive.google.com/uc?export=view&id=17u3xEBoonuBneCZprEnDhH30Phi4s_85',
-      'https://drive.google.com/uc?export=view&id=1O0hgp8WdHgXadSQIjYc1tazktDdrk3Ts',
-    ],
-    cost: 28.99,
-    category: fan,
-    productType: 'Polar Table Fan',
-  ),
-  Product(
-    name: 'Fanny Wall Fan',
-    imageUrls: [
-      //TODO links not working returning null
-      'https://drive.google.com/uc?export=view&id=1RxS40DgKZeaM3ZMr7yhFCEE_R2-xKmHq',
-      'https://drive.google.com/uc?export=view&id=1wuEa9sK3inYFzB7T98XQ3KbZrKG8clM6',
-    ],
-    cost: 28.99,
-    category: fan,
-    productType: 'Polar Wall Fan',
-  ),
-  Product(
-    name: 'Conquest-Pro Wall Fan',
-    imageUrls: [
-      //TODO links not working returning null
-      'https://drive.google.com/uc?export=view&id=1qh8CluJB0z9RYG_XvRztyYjN-lXWbvBq',
-      'https://drive.google.com/uc?export=view&id=1ap_kRBTnSrMLbkStqZTFyVsRkrCgi0kw',
-    ],
-    cost: 28.99,
-    category: fan,
-    productType: 'Polar Wall Fan',
-  ),
-  Product(
-    name: 'Exhaust Fan',
+    name: 'Exhaust 150MM Fan',
     imageUrls: [
       //TODO links not working returning null
       'https://drive.google.com/uc?export=view&id=1tpYJSpCiwX5Jis0klT_kn8ukqKqTFyPu',
       'https://drive.google.com/uc?export=view&id=1kk2iJpZbtFr88yL5kV0xIhpEd1rZklmi',
     ],
-    cost: 28.99,
+    cost: 300,
+    description: '150MM - ₹300 | 200MM - ₹350 | 250MM - ₹500',
     category: fan,
     productType: 'Polar Exhaust Fan',
   ),
@@ -1339,7 +1300,7 @@ List<Product> products = [
       'https://drive.google.com/uc?export=view&id=1Mqx1unniCTEsOXfEDG0YAEtOniv0uUal',
       'https://drive.google.com/uc?export=view&id=1zCJzJ6S4kvYIaRoH039aJjO2Qw33EHS1',
     ],
-    cost: 34.99,
+    cost: 0,
     category: fan,
     productType: 'Havells Ceiling Fan',
   ),
@@ -1349,7 +1310,7 @@ List<Product> products = [
       'https://drive.google.com/uc?export=view&id=1yMuWPS7VMzVZwh5k-e4UBeAZ-E1kkVZ7',
       'https://drive.google.com/uc?export=view&id=1dP62jbdZGC_Vom0wWup1mpV1rl9eHwhL',
     ],
-    cost: 34.99,
+    cost: 0,
     category: fan,
     productType: 'Havells Ceiling Fan',
   ),
@@ -1359,7 +1320,7 @@ List<Product> products = [
       'https://drive.google.com/uc?export=view&id=1OkROYF3R-1GjiLcus4cDcvvWuaJddo1W',
       'https://drive.google.com/uc?export=view&id=1HSGaHVOyCzkkPanULgMuqLCAcnBLGbDh',
     ],
-    cost: 34.99,
+    cost: 0,
     category: fan,
     productType: 'Havells Ceiling Fan',
   ),
@@ -1370,7 +1331,7 @@ List<Product> products = [
       'https://drive.google.com/uc?export=view&id=1_54Pk6jMbkv0T2maF1fvcWcKBmF_RRjU',
       'https://drive.google.com/uc?export=view&id=1Z1gw_OyBdYzEJw1P6Bcjh2bJrP4QmOtV',
     ],
-    cost: 34.99,
+    cost: 0,
     category: fan,
     productType: 'Havells Ceiling Fan',
   ),
@@ -1381,7 +1342,7 @@ List<Product> products = [
       'https://drive.google.com/uc?export=view&id=1Dj7voMuEwCT6grdILOIo1SnmiwSAiFg0',
       'https://drive.google.com/uc?export=view&id=1wSpTLvQtmsllQRyzxFQm5Wgotk-6tD3t',
     ],
-    cost: 34.99,
+    cost: 0,
     category: fan,
     productType: 'Havells Ceiling Fan',
   ),
@@ -1392,7 +1353,7 @@ List<Product> products = [
       'https://drive.google.com/uc?export=view&id=1twXOiQmzK98TNHA9dKHwAAUawMNO8l6R',
       'https://drive.google.com/uc?export=view&id=1CvBhhtP8SUg_X89Mv_C180qSDel7lbLq',
     ],
-    cost: 34.99,
+    cost: 0,
     category: fan,
     productType: 'Havells Ceiling Fan',
   ),
@@ -1401,7 +1362,7 @@ List<Product> products = [
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=1HzM9FrHWY7qmtgeZMaeaZ28MivRUnRhu',
     ],
-    cost: 34.99,
+    cost: 0,
     category: fan,
     productType: 'Havells Wall Fan',
   ),
@@ -1410,7 +1371,7 @@ List<Product> products = [
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=1aGbO1y9k8hOWhh_hNvFROKB60rLQUHOD',
     ],
-    cost: 34.99,
+    cost: 0,
     category: fan,
     productType: 'Havells Wall Fan',
   ),
@@ -1419,7 +1380,7 @@ List<Product> products = [
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=1iC-dJs7KC5voNV6lwmKFbVzKT-kan-5Y',
     ],
-    cost: 34.99,
+    cost: 0,
     category: fan,
     productType: 'Havells Wall Fan',
   ),
@@ -1428,7 +1389,7 @@ List<Product> products = [
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=1KHw31SIG6kKL6eXWkUAabQF9E73aTEfs',
     ],
-    cost: 34.99,
+    cost: 0,
     category: fan,
     productType: 'Havells Exhaust Fan',
   ),
@@ -1437,7 +1398,7 @@ List<Product> products = [
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=1Ip9G2vyzUhuz7WwvBa5JIIS9unC6os_U',
     ],
-    cost: 34.99,
+    cost: 0,
     category: fan,
     productType: 'Havells Exhaust Fan',
   ),
@@ -1446,7 +1407,7 @@ List<Product> products = [
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=12Aaa4-n2SzyOj6Ehaz24XMmh4OdmlC9E',
     ],
-    cost: 34.99,
+    cost: 0,
     category: fan,
     productType: 'Havells Exhaust Fan',
   ),
@@ -1456,95 +1417,50 @@ List<Product> products = [
       'https://drive.google.com/uc?export=view&id=1HX5Mhh0a_7vo8-MTJzisop_lnjcwPZ8i',
       'https://drive.google.com/uc?export=view&id=1ToMGvUVdUHHn_0cTcW2HtLzaluCS5sMm',
     ],
-    cost: 34.99,
+    cost: 0,
     category: fan,
     productType: 'Havells Exhaust Fan',
   ),
   Product(
-    name: 'HR-FR-LSH green wires',
+    name: 'OptimaPlus 90M Wires',
     imageUrls: [
-      'https://drive.google.com/uc?export=view&id=1cQsiU3UvLRN17psWC2kjffQN7i_0KdQD',
+      'https://drive.google.com/uc?export=view&id=1Dvaqmz_uAU9jRkjFHNHrMdnmK0cSPgL5',
     ],
-    cost: 9.99,
+    cost: 1003 ,
+    description: 'All prices for 90 Metres wire, 0.75MM - ₹1003 | 1MM - ₹1355 | 1.5MM - ₹1978 | 2.5MM - ₹3130 | 4MM - ₹4577 | 6MM - ₹6838 | 10MM - ₹10227 ',
     category: wires,
     productType: 'Polycab Wires',
   ),
   Product(
-    name: 'FR-LSH High_Performence Wires',
-    imageUrls: [
-      'https://drive.google.com/uc?export=view&id=195P0cdg7cXw7pu_RZ09MFXMuOVSSvwB_',
-    ],
-    cost: 11.99,
-    category: wires,
-    productType: 'Polycab Wires',
-  ),
-  Product(
-    name: 'FR-LF single-core Wires',
-    imageUrls: [
-      'https://drive.google.com/uc?export=view&id=1tIDqdmMDKauYSvFI5GrkK7rh5Za92X_I',
-    ],
-    cost: 8.99,
-    category: wires,
-    productType: 'Polycab Wires',
-  ),
-  Product(
-    name: "Building Wires",
+    name: "Building 90M Wires",
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=1xabiJ1UK_Hu_i1Y8bPCtDRkQF92bd6Zi',
       'https://drive.google.com/uc?export=view&id=1ourCqx445ftiswGGs0hNZE1HfoXzjTZt',
     ],
-    cost: 10.99,
+    cost: 897,
+    description: 'All prices for 90 Metres wire, 0.75MM - ₹897 | 1MM - ₹1128 | 1.5MM - ₹1725 | 2.5MM - ₹2476 | 4MM - ₹4117 | 6MM - ₹6300 ',
     category: wires,
     productType: 'Pressfit Wires',
   ),
   Product(
-    name: "Industrial Cable Wires",
-    imageUrls: [
-      'https://drive.google.com/uc?export=view&id=1tX0j9-fitAtu_cZ_OPMyKcZQkmsGfwEZ',
-      'https://drive.google.com/uc?export=view&id=1nwXDOdaFmHrquMw5abYa5Yz7jA50Ov3R',
-      'https://drive.google.com/uc?export=view&id=1zQ42jMQBAhmtvUQpYs7UT4SAnnzjb1vn',
-    ],
-    cost: 10.99,
-    category: wires,
-    productType: 'Pressfit Wires',
-  ),
-  Product(
-    name: "Aluminium Cables",
-    imageUrls: [
-      'https://drive.google.com/uc?export=view&id=1V7yc6A6xFORNiP_xmkGbt1NXcSKEOh_D',
-      'https://drive.google.com/uc?export=view&id=18ZL-WZZdAlcDXC5HYjU-8XJNT4BAz9wd',
-    ],
-    cost: 10.99,
-    category: wires,
-    productType: 'Pressfit Wires',
-  ),
-  Product(
-    name: "Twisted-Pair Cables",
-    imageUrls: [
-      'https://drive.google.com/uc?export=view&id=1gTAT6wb4v0lEGNa5BwQJWxHOc8Lr16gn',
-      'https://drive.google.com/uc?export=view&id=18ZL-WZZdAlcDXC5HYjU-8XJNT4BAz9wd',
-    ],
-    cost: 10.99,
-    category: wires,
-    productType: 'Pressfit Wires',
-  ),
-  Product(
-    name: "Lan Cables",
+    name: "Cat-6 Lan Cables 1M",
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=12MgEc0Enn4WAt4XCezANWyf9MLedOfmN',
       'https://drive.google.com/uc?export=view&id=1-AgWzU5Yw4o9MV43GLX8GtHl2Ug2lU9a',
     ],
-    cost: 10.99,
+    cost: 71,
+    description: '1M - ₹71  | 2M - ₹90 | 10M - ₹230 ',
     category: wires,
     productType: 'Lan Cable',
   ),
   Product(
-    name: "RG6 Coaxial Cable",
+    name: "RG6 Coaxial Cable 90M",
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=1qN7fgjBEh0X4QtbBQEYH9Q_1ngYkKXAv',
       'https://drive.google.com/uc?export=view&id=1-AgWzU5Yw4o9MV43GLX8GtHl2Ug2lU9a',
     ],
-    cost: 10.99,
+    cost: 700,
+    description: '90M - ₹700 | 100M - ₹999 ',
     category: wires,
     productType: 'Coaxial Cable',
   ),
@@ -1554,7 +1470,7 @@ List<Product> products = [
       'https://drive.google.com/uc?export=view&id=1danXpOnTdfW_vMiCHwb36O38NaXUxSNu',
       'https://drive.google.com/uc?export=view&id=1jC-SiaTxFwKlRHCTlTUOZbuNddworQaP',
     ],
-    cost: 10.99,
+    cost: 25,
     category: switchh,
     productType: 'Pressfit Switch',
   ),
@@ -1564,7 +1480,7 @@ List<Product> products = [
       'https://drive.google.com/uc?export=view&id=18V9K6ujTjcuSrlx8ppIPONbnblWlqIgg',
       'https://drive.google.com/uc?export=view&id=1bUdgZh_UEroLrV7H_SceJcy-fusjwm_6',
     ],
-    cost: 10.99,
+    cost: 55,
     category: switchh,
     productType: 'Pressfit Switch',
   ),
@@ -1573,7 +1489,7 @@ List<Product> products = [
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=1Nad5GHnZm0MXccw7KJAk65If-BmV0VVK',
     ],
-    cost: 10.99,
+    cost: 45-75,
     category: switchh,
     productType: 'Pressfit Switch',
   ),
@@ -1582,7 +1498,7 @@ List<Product> products = [
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=11lClPfBYg08wGrEf--zk-kGz_h4Xeshr',
     ],
-    cost: 10.99,
+    cost: 205,
     category: switchh,
     productType: 'Pressfit Switch',
   ),
@@ -1591,20 +1507,9 @@ List<Product> products = [
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=1EgRQ-qA7kQMBi0dBU4vgbSeT1lBc0gW3',
     ],
-    cost: 10.99,
+    cost: 45,
     category: switchh,
     productType: 'Pressfit Switch',
-  ),
-  Product(
-    name: "Solid Color Switch",
-    imageUrls: [
-      'https://drive.google.com/uc?export=view&id=1WO6CcKa3Ot9ql2YgN3AMY90ek1fWsY1L',
-      'https://drive.google.com/uc?export=view&id=10Vr7LyvTzP1TAv_RxuV9pxevsNxgJoi3',
-      'https://drive.google.com/uc?export=view&id=1pT5B_lVupBHaHBfVcXR9NoVKa_yMBbFk',
-    ],
-    cost: 10.99,
-    category: switchh,
-    productType: 'Pressfit Switch Plate',
   ),
   Product(
     name: "Pattern Switch",
@@ -1613,42 +1518,22 @@ List<Product> products = [
       'https://drive.google.com/uc?export=view&id=1giBza6hxuwljQtX11iwsBqIO6brVxffy',
       'https://drive.google.com/uc?export=view&id=1_msPkQbpjh4lCVb0n8RhH1e4WaU3NYqT',
     ],
-    cost: 10.99,
+    cost: 215,
+    description: '2M - ₹215 | 3M - ₹258 | 4M - ₹360 | 6M - ₹560 | 8M(HOR) - ₹613 | 8M(sqr) - ₹613',
     category: switchh,
     productType: 'Pressfit Switch Plate',
   ),
   Product(
-    name: "Elegant Design Switch",
+    name: "Solid Color Switch",
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=1ppwEA8WU3Nr4NVHzt-j8FLRLEYlbSgGT',
       'https://drive.google.com/uc?export=view&id=1BevB2F2OPw9JM0TqQMdU71939LqqE5Yh',
       'https://drive.google.com/uc?export=view&id=1tFxz321If7RxBjnjHPAEuF9Ej8h1wc2K',
     ],
-    cost: 10.99,
+    cost: 51,
+    description: '1M - ₹51 | 2M - ₹51 | 3M - ₹54 | 4M - ₹60 | 6M - ₹83 | 8M(HOR) - ₹104 | 8M(sqr) - ₹100 | 12M - ₹142 | 16M - ₹177 | 18M - ₹204',
     category: switchh,
     productType: 'Pressfit Switch Plate',
-  ),
-  Product(
-    name: "Modular Pattern Switch",
-    imageUrls: [
-      'https://drive.google.com/uc?export=view&id=1YTqxYMf2ZdcgAFQ0rk61yauGOXku2KzR',
-      'https://drive.google.com/uc?export=view&id=1jMM2-4eKu91HsnFn7E78cwTSXoEa1Hh8',
-      'https://drive.google.com/uc?export=view&id=1jMM2-4eKu91HsnFn7E78cwTSXoEa1Hh8',
-    ],
-    cost: 10.99,
-    category: switchh,
-    productType: 'Pressfit Modular Switch',
-  ),
-  Product(
-    name: "Modular Solid Switch",
-    imageUrls: [
-      'https://drive.google.com/uc?export=view&id=1xnjdQZHDd4213E_iOkcLqN8vYYp2eqlf',
-      'https://drive.google.com/uc?export=view&id=13RWtgA9InGbzJuohXOSwK4FLaKd6fX1u',
-      'https://drive.google.com/uc?export=view&id=1vSs1A9bUmuNXQmPFAwHmC2Yq87L6413v',
-    ],
-    cost: 10.99,
-    category: switchh,
-    productType: 'Pressfit Modular Switch',
   ),
   Product(
     name: "MCB",
@@ -1656,7 +1541,7 @@ List<Product> products = [
       'https://drive.google.com/uc?export=view&id=1XSwbLM7UbqagLQX9ALyb4yKBSQq9ehFe',
       'https://drive.google.com/uc?export=view&id=1tv3LVVWogcqjlKGXo0TvsQqCee0-r4JY',
     ],
-    cost: 10.99,
+    cost: 120,
     category: mcb,
     productType: 'MCB',
   ),
@@ -1665,7 +1550,7 @@ List<Product> products = [
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=1gDMF28gHPgX_JtZT9ndQIqBnRTIA5xBo',
     ],
-    cost: 10.99,
+    cost: 150,
     category: mcb,
     productType: 'MCB',
   ),
@@ -1674,7 +1559,7 @@ List<Product> products = [
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=1iPaefiU5Q9WDBJAmqUSzPZcn8clIF89K',
     ],
-    cost: 10.99,
+    cost: 2500,
     category: mcb,
     productType: 'RCcB',
   ),
@@ -1684,7 +1569,8 @@ List<Product> products = [
       'https://drive.google.com/uc?export=view&id=1qr3BUYuAGNlxcb-xdfJbYVyouo_1757r',
       'https://drive.google.com/uc?export=view&id=1wqra0vhcwvK_Ajm-Ogocer1hbS9XRKBM',
     ],
-    cost: 10.99,
+    cost: 320,
+    description: "40W - ₹320 ,63W - ₹400, 100W - ₹560" ,
     category: mcb,
     productType: 'Isolator',
   ),
@@ -1693,7 +1579,8 @@ List<Product> products = [
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=1j7evZIjtUCcaeDJORSQLG_sFtkMAjWzg',
     ],
-    cost: 10.99,
+    cost: 540,
+    description: "25W - ₹540 ,40W - ₹725 ,63W - ₹1000",
     category: mcb,
     productType: 'Changeover',
   ),
@@ -1702,28 +1589,30 @@ List<Product> products = [
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=1-wf0lFVI46bBpigF2sU9q24R-q9X70p5',
     ],
-    cost: 10.99,
+    cost: 77,
+    description: "16A-240V - ₹77 ,16A-415V - ₹131 ,32A-415V - ₹240 ,63A-415V - ₹600, 100A-415V - ₹1060",
     category: mcb,
     productType: 'Fuse',
   ),
   Product(
-    name: "Armor",
+    name: "Distribution Board",
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=14HIGM422hwNtW-FU_ojEUFIPi18EgIVb',
       'https://drive.google.com/uc?export=view&id=1z8IynqPkGpi2TDn_R7tRDgujDrIRYd8F',
       'https://drive.google.com/uc?export=view&id=1ZBGu6UCVrhLJXfKDsfNAO_KC3g4S0Zyr',
       'https://drive.google.com/uc?export=view&id=1snMHoLVgyDLq9LoHBfI9bE--GPrBUnxa',
     ],
-    cost: 10.99,
+    cost: 1100,
+    description: "4way - ₹1100 ,6way - ₹1250 ,8way - ₹1400 ,12way - ₹1800",
     category: mcb,
-    productType: 'Armor',
+    productType: 'Distribution Box',
   ),
     Product(
     name: "Havells 35L Oven",
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=1oucESAbZ0nhdo4T32yJdZRw37ScX2ZTj',
     ],
-    cost: 10.99,
+    cost: 0,
     category: applince,
     productType: 'Oven',
   ),
@@ -1732,7 +1621,7 @@ List<Product> products = [
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=1rPF6QSUcWKuAxAh3Jm58XgPHrwaNjeMJ',
     ],
-    cost: 10.99,
+    cost: 0,
     category: applince,
     productType: 'Oven',
   ),
@@ -1741,7 +1630,7 @@ List<Product> products = [
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=18ka09XqlsTibdG-mnMwb4eW27AKC4GFE',
     ],
-    cost: 10.99,
+    cost: 0,
     category: applince,
     productType: 'Oven',
   ),
@@ -1750,7 +1639,7 @@ List<Product> products = [
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=1DbZujJ-fOK44kS6-9egpm_8pj9e2P6wm',
     ],
-    cost: 10.99,
+    cost: 0,
     category: applince,
     productType: 'Oven',
   ),
@@ -1759,7 +1648,7 @@ List<Product> products = [
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=1guJNqya4BjJHo8uqWsi62khzw-E_A4-N',
     ],
-    cost: 10.99,
+    cost: 0,
     category: applince,
     productType: 'Oven',
   ),
@@ -1768,7 +1657,7 @@ List<Product> products = [
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=1A5_6AieNjtLWrheQ5xik1oA_aXh8nFNR',
     ],
-    cost: 10.99,
+    cost: 0,
     category: applince,
     productType: 'Oven',
   ),
@@ -1777,7 +1666,7 @@ List<Product> products = [
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=1leZSVnt3wGADyhJt5apEBaF-s72U2Cwf',
     ],
-    cost: 10.99,
+    cost: 0,
     category: applince,
     productType: 'Oven',
   ),
@@ -1786,7 +1675,7 @@ List<Product> products = [
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=1gKK6uVOLBXOgxGWthjN128kTBVtFEAtW',
     ],
-    cost: 10.99,
+    cost: 0,
     category: applince,
     productType: 'Oven',
   ),
@@ -1795,7 +1684,7 @@ List<Product> products = [
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=1d_c03k4O8hMeAOtFvBZP0dUZg8ugMdaA',
     ],
-    cost: 10.99,
+    cost: 0,
     category: applince,
     productType: 'Air Fryer',
   ),
@@ -1804,7 +1693,7 @@ List<Product> products = [
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=1xExDlheAuM0Ra26lFmUag-Ru0gYOtRrx',
     ],
-    cost: 10.99,
+    cost: 0,
     category: applince,
     productType: 'Air Fryer',
   ),
@@ -1814,7 +1703,7 @@ List<Product> products = [
       'https://drive.google.com/uc?export=view&id=1C4e_LEUsL9NWnvSG26Vyd6YEtjveSTyV',
       'https://drive.google.com/uc?export=view&id=1xI2OYvQ6_mtUE_yW8Bj2vcRNa2l7AV9o',
     ],
-    cost: 10.99,
+    cost: 0,
     category: applince,
     productType: 'Air Fryer',
   ),
@@ -1824,7 +1713,7 @@ List<Product> products = [
       'https://drive.google.com/uc?export=view&id=1Gsgjg_FUi2sowiJ6yoOfbh_V_m0qYIxN',
       'https://drive.google.com/uc?export=view&id=1bL3ZWPd3fmE9_VXKynW0sW3sNrHsD9lC',
     ],
-    cost: 10.99,
+    cost: 0,
     category: applince,
     productType: 'Toaster',
   ),
@@ -1834,7 +1723,7 @@ List<Product> products = [
       'https://drive.google.com/uc?export=view&id=1s1VHTMOSKEbwVGGOZ88swbdFIwHTPq2M',
       'https://drive.google.com/uc?export=view&id=1smHjnSs0ZPA1C-8cu3iBKPQS3NrRRAza',
     ],
-    cost: 10.99,
+    cost: 0,
     category: applince,
     productType: 'Toaster',
   ),
@@ -1843,7 +1732,7 @@ List<Product> products = [
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=1Fy_7tS3gSlCtPYrvnXYuOUUnTReD24RD',
     ],
-    cost: 10.99,
+    cost: 0,
     category: applince,
     productType: 'Toaster',
   ),
@@ -1853,7 +1742,7 @@ List<Product> products = [
       'https://drive.google.com/uc?export=view&id=1IVOnE_OUK9AgHwtRgcipmUsiFXszUYJM',
       'https://drive.google.com/uc?export=view&id=1vUVtyP2xRm2wPoHAFs7Oov_8aU7M-yLF',
     ],
-    cost: 10.99,
+    cost: 0,
     category: applince,
     productType: 'Toaster',
   ),
@@ -1863,7 +1752,7 @@ List<Product> products = [
       'https://drive.google.com/uc?export=view&id=1QrrXUoSxAA8mfVjrPY3rvWCobbw_7JC6',
       'https://drive.google.com/uc?export=view&id=184Uh_3zQoTgv9GiypY-liTDfCk-JvgqU',
     ],
-    cost: 10.99,
+    cost: 0,
     category: applince,
     productType: 'Toaster',
   ),
@@ -1872,7 +1761,7 @@ List<Product> products = [
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=1A90QyRL6VON4Nqovvmvqc_FJlHnqV-2h',
     ],
-    cost: 10.99,
+    cost: 0,
     category: applince,
     productType: 'Induction',
   ),
@@ -1881,7 +1770,7 @@ List<Product> products = [
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=1lf5tPMqAAFR9FVMgU6qt8uv8gTy5_8pL',
     ],
-    cost: 10.99,
+    cost: 0,
     category: applince,
     productType: 'Induction',
   ),
@@ -1890,7 +1779,7 @@ List<Product> products = [
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=1Y6xlvtCPUzKPYgDqEqGIGUJkZlqtI_fJ',
     ],
-    cost: 10.99,
+    cost: 0,
     category: applince,
     productType: 'Induction',
   ),
@@ -1899,7 +1788,7 @@ List<Product> products = [
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=1zcV1iG8GYSmR8w2h_I2mn9NI9ggi7AvA',
     ],
-    cost: 10.99,
+    cost: 0,
     category: applince,
     productType: 'Induction',
   ),
@@ -1908,7 +1797,7 @@ List<Product> products = [
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=1ONpE-AySwebF1smiS-S4ESaKNpumIh1C',
     ],
-    cost: 10.99,
+    cost: 0,
     category: applince,
     productType: 'Induction',
   ),
@@ -1917,7 +1806,7 @@ List<Product> products = [
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=1iSCs07HT0anDhHLOxGWJ7Gq9yyHqs4uk',
     ],
-    cost: 10.99,
+    cost: 0,
     category: applince,
     productType: 'Rice Cooker',
   ),
@@ -1926,9 +1815,28 @@ List<Product> products = [
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=1onVAab-HCGjageHEMgPIaHloR7AmYcgC',
     ],
-    cost: 10.99,
+    cost: 0,
     category: applince,
     productType: 'Rice Cooker',
+  ),
+  Product(
+    name: "Polar Mixo 500W Mixer Grinder",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1bIAIaGUww58j3gxzk_E10TJqjjMYVcvW',
+    ],
+    cost: 1200,
+    description: '500W - ₹1200 | 750W - ₹1500 ',
+    category: applince,
+    productType: 'Mixer Grinder',
+  ),
+  Product(
+    name: "Polar Puma 500W Mixer Grinder",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1vZ8mtGqTOKDjNpRysD-ow1HUa7LRWacM',
+    ],
+    cost: 900,
+    category: applince,
+    productType: 'Mixer Grinder',
   ),
   Product(
     name: "Havells Hexo 1000W Mixer Grinder",
@@ -1936,7 +1844,7 @@ List<Product> products = [
       'https://drive.google.com/uc?export=view&id=1KbwSf9aAfgGa5R8VlGbQx197ZhAlLqBS',
       'https://drive.google.com/uc?export=view&id=1tg9TdjcO_Sr1DfWyOAe2jFzmDi09_58f',
     ],
-    cost: 10.99,
+    cost: 0,
     category: applince,
     productType: 'Mixer Grinder',
   ),
@@ -1946,7 +1854,7 @@ List<Product> products = [
       'https://drive.google.com/uc?export=view&id=1BF84G9WOj0GIE2aEJvhhWgX0DTqi9Vid',
       'https://drive.google.com/uc?export=view&id=1HC8qGWWbyF0bEaZIpY25oR0iiLDmZde4',
     ],
-    cost: 10.99,
+    cost: 1200,
     category: applince,
     productType: 'Mixer Grinder',
   ),
@@ -1956,7 +1864,7 @@ List<Product> products = [
       'https://drive.google.com/uc?export=view&id=1YlL8PtCOojAxjby2TzqfZMkZ3Qb32bDp',
       'https://drive.google.com/uc?export=view&id=10-NpL27XDST5Wlte0ngWABBiL_xhqHp1',
     ],
-    cost: 10.99,
+    cost: 0,
     category: applince,
     productType: 'Mixer Grinder',
   ),
@@ -1966,7 +1874,7 @@ List<Product> products = [
       'https://drive.google.com/uc?export=view&id=1Ig1Kv-2yzB7xB1PojQVEClDnENGghYGV',
       'https://drive.google.com/uc?export=view&id=1pmtw6k_HQUuYsKx2qt0TqBb8FwXlyd75',
     ],
-    cost: 10.99,
+    cost: 1500,
     category: applince,
     productType: 'Mixer Grinder',
   ),
@@ -1975,9 +1883,28 @@ List<Product> products = [
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=13hZskWAUQtxsLgh5ZtS-INQm77692HFX',
     ],
-    cost: 10.99,
+    cost: 0,
     category: applince,
     productType: 'Mixer Grinder',
+  ),
+  Product(
+    name: "Polar Refresha-pro 3L",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1uQ6QVaAlMaWOmZFojiWykY84_qHQF8x5',
+    ],
+    cost: 1500,
+    category: applince,
+    productType: 'Water Heater',
+  ),
+  Product(
+    name: "Polar Aquahot 6L",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1swlhcogSIV5768QrYbb3soiFZvJ6E3OX',
+    ],
+    cost: 2200,
+    description: '6L - ₹2200 | 10L - ₹3100 | 15L - ₹3900 ',
+    category: applince,
+    productType: 'Water Heater',
   ),
   Product(
     name: "Havells Hexo 1000W Juicer",
@@ -1985,7 +1912,7 @@ List<Product> products = [
       'https://drive.google.com/uc?export=view&id=1fiDRB9jwai0buh8V0WWvhcyobYvE6rja',
       'https://drive.google.com/uc?export=view&id=1ZcDenmLmy5oUgStvDVs72tG3aL5zGkbB'
     ],
-    cost: 10.99,
+    cost: 0,
     category: applince,
     productType: 'Juicer',
   ),
@@ -1995,7 +1922,7 @@ List<Product> products = [
       'https://drive.google.com/uc?export=view&id=1NQV4y8B29qM8PJVQP4YMx_y_Ia5xzv0-',
       'https://drive.google.com/uc?export=view&id=1xX85F6c-0dgxXe1v8mmO5y9f-Jh94IOt'
     ],
-    cost: 10.99,
+    cost: 0,
     category: applince,
     productType: 'Juicer',
   ),
@@ -2004,7 +1931,7 @@ List<Product> products = [
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=1sPDDv4G1GuPEFBx5UJcmTxtoQ3P_z73h',
     ],
-    cost: 10.99,
+    cost: 0,
     category: applince,
     productType: 'Juicer',
   ),
@@ -2013,9 +1940,45 @@ List<Product> products = [
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=1D0LvrnU3Aemzi-SAtakTvASGEpl7FLaX',
     ],
-    cost: 10.99,
+    cost: 0,
     category: applince,
     productType: 'Juicer',
+  ),
+  Product(
+    name: "Polar D1000M6 Iron",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1WLS9uWABqh2sf2aSjQlYbmF7b_TUii6g',
+    ],
+    cost: 500,
+    category: applince,
+    productType: 'Iron',
+  ),
+  Product(
+    name: "Polar 1000P4 Iron",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1fDcU5Ekvn6196jdH82tAhqR7fxJWrES-',
+    ],
+    cost: 500,
+    category: applince,
+    productType: 'Iron',
+  ),
+  Product(
+    name: "Polar 1000P5 Iron",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=10Jycj3oN2gh6-VLHFXORUCnoflmmsZYI',
+    ],
+    cost: 550,
+    category: applince,
+    productType: 'Iron',
+  ),
+  Product(
+    name: "Polar 1000MH3 Iron",
+    imageUrls: [
+      'https://drive.google.com/uc?export=view&id=1M-_b1PCZLAwmaRHcP5OQOpKRKQpn-4sr',
+    ],
+    cost: 500,
+    category: applince,
+    productType: 'Iron',
   ),
   Product(
     name: "Havells Husky Steam Iron",
@@ -2023,7 +1986,7 @@ List<Product> products = [
       'https://drive.google.com/uc?export=view&id=1qBDoTZQzzWhEknAik1ro1GX7TBM2oWrb',
       'https://drive.google.com/uc?export=view&id=14cUb-OOSQ6hqj5bdHEKHiYWsNspMkpcx'
     ],
-    cost: 10.99,
+    cost: 0,
     category: applince,
     productType: 'Iron',
   ),
@@ -2033,7 +1996,7 @@ List<Product> products = [
       'https://drive.google.com/uc?export=view&id=1y2OHHQnXxa0r5mHhzEZPzFLQG7O4mpCH',
       'https://drive.google.com/uc?export=view&id=1G8BrMHZf_nJyAIISw6BTm7J4wT8KQWv5'
     ],
-    cost: 10.99,
+    cost: 0,
     category: applince,
     productType: 'Iron',
   ),
@@ -2042,7 +2005,7 @@ List<Product> products = [
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=1aA9-yA6Y4JhiNaZlyw687zo70I5z3ait',
     ],
-    cost: 10.99,
+    cost: 0,
     category: applince,
     productType: 'Iron',
   ),
@@ -2051,7 +2014,7 @@ List<Product> products = [
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=1D9ansqV232lqz8qDzDTuiQ50vuN_YPgu',
     ],
-    cost: 10.99,
+    cost: 0,
     category: applince,
     productType: 'Iron',
   ),
@@ -2062,7 +2025,7 @@ List<Product> products = [
       'https://drive.google.com/uc?export=view&id=1Lw-qQqJX3XpefcOO0impG3rybf2QNd44',
       'https://drive.google.com/uc?export=view&id=1Tk80izj0fOHhkUOf44-nHWmdT3DOu9P7',
     ],
-    cost: 10.99,
+    cost: 0,
     category: applince,
     productType: 'Miscellaneous',
   ),
@@ -2072,7 +2035,7 @@ List<Product> products = [
       'https://drive.google.com/uc?export=view&id=1oihBBJ4zUDHqQ_q2hwGEx_y7JjYshPH4',
       'https://drive.google.com/uc?export=view&id=1-0XwZBoKpckIVn08hQJdTtXDKeIekDYT',
     ],
-    cost: 10.99,
+    cost: 0,
     category: applince,
     productType: 'Miscellaneous',
   ),
@@ -2082,7 +2045,7 @@ List<Product> products = [
       'https://drive.google.com/uc?export=view&id=16wYV5hr4pP-blomTZzH5KzBE-bElKNmH',
       'https://drive.google.com/uc?export=view&id=1IeXbXpwlGnegPKZxlpoSV_wZ7so1PkTX',
     ],
-    cost: 10.99,
+    cost: 0,
     category: applince,
     productType: 'Miscellaneous',
   ),
@@ -2092,7 +2055,7 @@ List<Product> products = [
       'https://drive.google.com/uc?export=view&id=1cE221M9ZywtE9Sd_fScWvIOi3cZohZca',
       'https://drive.google.com/uc?export=view&id=1W-yhrkV3wQsOf-D242GmznKW_HJ---Qs',
     ],
-    cost: 10.99,
+    cost: 0,
     category: applince,
     productType: 'Miscellaneous',
   ),
@@ -2102,7 +2065,7 @@ List<Product> products = [
       'https://drive.google.com/uc?export=view&id=1fntIV90HpK7xgvIp-H1Zu3TLFggOJ9nA',
       'https://drive.google.com/uc?export=view&id=1nAUkxlnHt3WuG7_LiGRYm7VSSHoj-bCp',
     ],
-    cost: 10.99,
+    cost: 0,
     category: applince,
     productType: 'Miscellaneous',
   ),
@@ -2111,7 +2074,7 @@ List<Product> products = [
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=1QQTuVPDm3O3OcK4j_hkGUPSi0WTTykC9',
     ],
-    cost: 10.99,
+    cost: 0,
     category: applince,
     productType: 'Miscellaneous',
   ),
@@ -2120,7 +2083,7 @@ List<Product> products = [
     imageUrls: [
       'https://drive.google.com/uc?export=view&id=1taUeFov2D67ILzkD7W8fUg4Se3hddpD8',
     ],
-    cost: 10.99,
+    cost: 0,
     category: applince,
     productType: 'Miscellaneous',
   ),
