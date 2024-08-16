@@ -90,7 +90,7 @@ class _HomeState extends State<Home>{
                               margin: const EdgeInsets.only(top: 20),
                               height: 130,
                               width: MediaQuery.of(context).size.width/1.2,
-                              child: Image.asset('assets/img/sale-2.png',fit: BoxFit.cover)
+                              child: Image.asset('assets/img/sale-4.png',fit: BoxFit.cover)
                           ),
                           Container(
                               margin: const EdgeInsets.only(top: 20),
